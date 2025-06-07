@@ -7,7 +7,26 @@ const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [emailStatus, setEmailStatus] = useState('');
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [typedName, setTypedName] = useState('');
   const formRef = useRef();
+
+  // Typing animation effect
+  useEffect(() => {
+    const name = "Ananya Menon";
+    let i = 0;
+    if (loading) {
+      const typing = setInterval(() => {
+        setTypedName((prev) => prev + name[i]);
+        i++;
+        if (i === name.length) {
+          clearInterval(typing);
+          setTimeout(() => setLoading(false), 800); // Wait a bit before showing portfolio
+        }
+      }, 120);
+      return () => clearInterval(typing);
+    }
+  }, [loading]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -181,7 +200,7 @@ const Portfolio = () => {
             <div className="hero-avatar">
   <img
     src="/Profile pic.jpg" // If in public folder
-    alt="AM"
+    alt=""
     style={{
       width: '100%',
       height: '100%',
