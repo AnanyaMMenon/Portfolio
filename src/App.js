@@ -221,7 +221,7 @@ const Portfolio = () => {
           <div className="hero-content" style={{ maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
             <div className="hero-avatar">
   <img
-    src="/image.png" // If in public folder
+    src="/Profile pic.jpg" // If in public folder
     alt="Ananya Menon"
     style={{
       width: '100%',
