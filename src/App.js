@@ -199,7 +199,7 @@ const Portfolio = () => {
           <div className="hero-content" style={{ maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
             <div className="hero-avatar">
   <img
-    src="/Profile pic.jpg" // If in public folder
+    src="image.jpg" // If in public folder
     alt=""
     style={{
       width: '100%',
@@ -235,6 +235,8 @@ const Portfolio = () => {
   href="/resume.pdf" // This path must match the file name in your public folder
   className="btn-secondary"
   download
+  target="_blank"
+  rel="noopener noreferrer"
 >
   <Download size={20} />
   Download Resume
@@ -242,13 +244,13 @@ const Portfolio = () => {
           </div>
 
           <div className="social-links">
-            <a href="https://linkedin.com/in/ananya-m-menon" className="social-link">
+            <a href="https://linkedin.com/in/ananya-m-menon" className="social-link" target="_blank" rel="noopener noreferrer">
               <Linkedin size={30} />
             </a>
-            <a href="https://github.com/AnanyaMMenon" className="social-link">
+            <a href="https://github.com/AnanyaMMenon" className="social-link" target="_blank" rel="noopener noreferrer">
               <Github size={30} />
             </a>
-            <a href="mailto:ananyammenon@gmail.com" className="social-link">
+            <a href="mailto:ananyammenon@gmail.com" className="social-link" target="_blank" rel="noopener noreferrer">
               <Mail size={30} />
             </a>
           </div>
@@ -409,7 +411,12 @@ Coded my way through a Master’s at Illinois Tech. 3+ years of breaking, fixing
               Published in: Proceedings of the 2nd International Conference on Recent Trends in Machine Learning, IoT, Smart Cities and Applications, 
               Lecture Notes in Networks and Systems 237 • December 2021
             </div>
-            <a href="https://link.springer.com/epdf/10.1007/978-981-16-6407-6_67?sharing_token=DwUKby1AiSeesSk0SQven_e4RwlQNchNByi7wbcMAY6qyTQEIZy7YhTdTpcA7llm7CLJWtfI5qeMB_dGoJJDqoqzMrQYZvUHLrkkcy3f-H2gIkfno4L2Az_ix1u_lkSzkRgwBjIcnVSQKC0reuL6ivfJ9tCgH5xqOS-6ZoHY_Bk%3D" className="inline-flex items-center gap-2 text-white hover:text-purple-300 transition-colors">
+            <a
+              href="https://link.springer.com/epdf/10.1007/978-981-16-6407-6_67?sharing_token=DwUKby1AiSeesSk0SQven_e4RwlQNchNByi7wbcMAY6qyTQEIZy7YhTdTpcA7llm7CLJWtfI5qeMB_dGoJJDqoqzMrQYZvUHLrkkcy3f-H2gIkfno4L2Az_ix1u_lkSzkRgwBjIcnVSQKC0reuL6ivfJ9tCgH5xqOS-6ZoHY_Bk%3D"
+              className="inline-flex items-center gap-2 text-white hover:text-purple-300 transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <ExternalLink size={16} />
               View Publication
             </a>
@@ -459,12 +466,12 @@ Coded my way through a Master’s at Illinois Tech. 3+ years of breaking, fixing
   <span className="block mt-2 text-purple-300 underline">Contact Me</span>
 </a>
             {/* ...LinkedIn and GitHub cards... */}
-            <a href="https://linkedin.com/in/ananya-m-menon" className="glass-card text-center group">
+            <a href="https://linkedin.com/in/ananya-m-menon" className="glass-card text-center group" target="_blank" rel="noopener noreferrer">
               <Linkedin className="text-purple mx-auto mb-4 group-hover:scale-110 transition-transform" size={32} />
               <h3 className="text-white font-semibold mb-2">LinkedIn</h3>
               <p className="text-muted">ananya-m-menon</p>
             </a>
-            <a href="https://github.com/AnanyaMMenon" className="glass-card text-center group">
+            <a href="https://github.com/AnanyaMMenon" className="glass-card text-center group" target="_blank" rel="noopener noreferrer">
               <Github className="text-purple mx-auto mb-4 group-hover:scale-110 transition-transform" size={32} />
               <h3 className="text-white font-semibold mb-2">GitHub</h3>
               <p className="text-muted">AnanyaMMenon</p>
