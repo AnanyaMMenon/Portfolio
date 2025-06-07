@@ -93,7 +93,7 @@ body {
 .hero-avatar {
   width: 16rem;
   height: 16rem;
-  margin: 4rem auto 2.5rem; /* Increased top margin to move photo down */
+  margin: 4rem auto 2.5rem;
   border-radius: 50%;
   background: none;
   display: flex;
@@ -103,6 +103,11 @@ body {
   font-size: 7rem;
   font-weight: bold;
   box-shadow: 0 16px 32px rgba(139, 92, 246, 0.25);
+  text-align: center;
+  line-height: 1;
+  height: 16rem;
+  width: 16rem;
+  flex-direction: row;
 }
 
 .hero-name {
@@ -143,6 +148,7 @@ body {
 .btn-primary {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   background: #8b5cf6;
   color: white;
@@ -245,6 +251,24 @@ body {
   word-break: normal;
   white-space: nowrap;
   font-size: 1.1rem;
+}
+
+/* Contact form card style */
+.contact-form-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 5rem 2rem;
+  max-width: 650px; /* Adjusted width for better responsiveness */
+  margin: 0 auto;         /* Center horizontally */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;      /* Center horizontally */
+  margin-right: auto;     /* Center horizontally */
 }
 
 /* Responsive design */

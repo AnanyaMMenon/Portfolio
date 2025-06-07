@@ -2,50 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import emailjs from 'emailjs-com';
 import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Download, Menu, X, Code, Database, Cloud, Award } from 'lucide-react';
 import './Portfolio.css'; // Import your CSS file
-const AccordionSkillSection = ({ title, items, isCert = false }) => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div className="glass-card">
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex justify-between items-center text-left focus:outline-none"
-      >
-        <span className="text-3xl font-bold text-purple-300 mb-6">{title}</span>
-        <span className="text-purple-300 text-3xl">{open ? '−' : '+'}</span>
-      </button>
-      {open && (
-        <div className="mt-4 space-y-2">
-          {!isCert ? (
-            <div className="flex flex-wrap gap-3">
-              {items.map((skill, index) => (
-                <span
-                  key={index}
-                  className="text-white text-xl flex items-center gap-3"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          ) : (
-            items.map((cert, index) => (
-              <div key={index} className="text-white text-xl flex items-center gap-3">
-                <Award size={22} className="text-purple" />
-                <span>{cert}</span>
-              </div>
-            ))
-          )}
-        </div>
-      )}
-    </div>
-  );
-};
-
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const [isNavExpanded, setIsNavExpanded] = useState(false);
-  const [showContactForm, setShowContactForm] = useState(false);
   const [emailStatus, setEmailStatus] = useState('');
   const [message, setMessage] = useState("");
   const formRef = useRef();
@@ -86,10 +45,10 @@ const Portfolio = () => {
     setEmailStatus(''); // Reset status
 
     emailjs.sendForm(
-      'service_g6ckl07',    // Replace with your EmailJS service ID
-      'template_h8o6q79',   // Replace with your EmailJS template ID
+      'service_t7am8qo',    // Replace with your EmailJS service ID
+      'template_p6nhyft',   // Replace with your EmailJS template ID
       formRef.current,
-      'oEUyRAZT4KRfNyMDQ'     // Replace with your EmailJS public key
+      'tZ1u72LpykRW7FiZT'     // Replace with your EmailJS public key
     )
     .then(
       (result) => {
@@ -222,7 +181,7 @@ const Portfolio = () => {
             <div className="hero-avatar">
   <img
     src="/Profile pic.jpg" // If in public folder
-    alt="Ananya Menon"
+    alt="AM"
     style={{
       width: '100%',
       height: '100%',
@@ -412,7 +371,7 @@ Coded my way through a Master’s at Illinois Tech. 3+ years of breaking, fixing
 
       {/* Projects Section */}
       <section id="projects" className="section section-dark">
-        <h2 className="section-title">Featured Project</h2>
+        <h2 className="section-title">Publication</h2>
         <div className="max-w-4xl mx-auto">
           <div className="glass-card">
             <h3 className="text-2xl font-bold text-white mb-4">Flask Based Web App on Diabetes Prediction Using Machine Learning</h3>
@@ -431,7 +390,7 @@ Coded my way through a Master’s at Illinois Tech. 3+ years of breaking, fixing
               Published in: Proceedings of the 2nd International Conference on Recent Trends in Machine Learning, IoT, Smart Cities and Applications, 
               Lecture Notes in Networks and Systems 237 • December 2021
             </div>
-            <a href="#" className="inline-flex items-center gap-2 text-purple hover:text-purple-300 transition-colors">
+            <a href="https://link.springer.com/epdf/10.1007/978-981-16-6407-6_67?sharing_token=DwUKby1AiSeesSk0SQven_e4RwlQNchNByi7wbcMAY6qyTQEIZy7YhTdTpcA7llm7CLJWtfI5qeMB_dGoJJDqoqzMrQYZvUHLrkkcy3f-H2gIkfno4L2Az_ix1u_lkSzkRgwBjIcnVSQKC0reuL6ivfJ9tCgH5xqOS-6ZoHY_Bk%3D" className="inline-flex items-center gap-2 text-white hover:text-purple-300 transition-colors">
               <ExternalLink size={16} />
               View Publication
             </a>
@@ -497,9 +456,9 @@ Coded my way through a Master’s at Illinois Tech. 3+ years of breaking, fixing
 
       {/* Contact Form Section (bottom of the page) */}
 <section id="contact-form" className="section section-dark">
-  <div className="max-w-md mx-auto bg-[#18122b] rounded-lg p-8">
+  <div className="contact-form-card">
     <h3 className="text-2xl font-bold text-purple-300 mb-4 text-center">Send me a message</h3>
-    <form ref={formRef} onSubmit={sendEmail} className="space-y-4">
+    <form ref={formRef} onSubmit={sendEmail} className="space-y-4 w-full">
       <input
         type="text"
         name="user_name"
@@ -510,7 +469,14 @@ Coded my way through a Master’s at Illinois Tech. 3+ years of breaking, fixing
       <input
         type="email"
         name="user_email"
-        placeholder="Your Email"
+        placeholder="Your Email Id"
+        required
+        className="w-full px-4 py-2 rounded bg-[#251a3a] text-black"
+      />
+      <input
+        type="text"
+        name="subject"
+        placeholder="Subject"
         required
         className="w-full px-4 py-2 rounded bg-[#251a3a] text-black"
       />
@@ -524,7 +490,6 @@ Coded my way through a Master’s at Illinois Tech. 3+ years of breaking, fixing
           value={message}
           onChange={e => setMessage(e.target.value)}
         />
-       
       </div>
       <button
         type="submit"
