@@ -83,13 +83,41 @@ const Portfolio = () => {
   };
 
   const skills = {
-    languages: ['C#', 'C/C++', 'Java', 'Python', 'SQL', 'Dart', 'JavaScript', 'TypeScript'],
-    frameworks: ['ASP.NET MVC', 'ASP.NET Web API', 'Flask', 'Angular', 'Entity Framework Core', 'React', 'Flutter'],
-    tools: ['Microsoft Azure', 'DevOps', 'Git', 'ServiceNow', 'SQL Server Management Studio'],
-    certifications: [
-      'Microsoft Certified Azure DevOps Engineer Expert',
-      'Microsoft Certified Azure Developer Associate',
-      'Microsoft Certified Azure Data Engineer Associate'
+    languages: [
+      'C#',
+      'C/C++',
+      'Java',
+      'Python',
+      'JavaScript',
+      'TypeScript',
+      'SQL',
+      'Dart',
+      'HTML & CSS'
+    ],
+    frameworks: [
+      'ASP.NET MVC',
+      'ASP.NET Web API',
+      'Entity Framework Core',
+      'Flask',
+      'Angular',
+      'React',
+      'Flutter',
+      'jQuery',
+      'Bootstrap',
+      'Node.js',
+      'Express.js',
+      'Tailwind CSS',
+    ],
+    tools: [
+      'Microsoft Azure',
+      'Git & GitHub',
+      'GitLab CI/CD',
+      'Docker',
+      'Postman',
+      'Visual Studio & VS Code',
+      'ServiceNow',
+      'Azure DevOps Pipelines',
+      'SSMS',
     ]
   };
 
@@ -350,57 +378,46 @@ Coded my way through a Master’s at Illinois Tech. 3+ years of breaking, fixing
       <section id="skills" className="section">
         <h2 className="section-title text-4xl font-bold text-white mb-12 text-center">Technical Skills</h2>
         <div className="glass-card mb-8">
-          <h3 className="text-xl font-bold text-purple-300 mb-4">Programming Languages</h3>
-          <div className="flex flex-wrap gap-4">
-            {skills.languages.map((skill, index) => (
-              <span
-                key={index}
-                className="bg-purple-600/20 text-white text-xl px-5 py-2 rounded-full font-medium flex items-center gap-2"
-              >
-                <Code className="text-purple" size={22} />
-                {skill}
-              </span>
-            ))}
-          </div>
+          <h3 className="text-xl font-bold text-purple-300 mb-4">🧠 Programming Languages</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+  {skills.languages.map((skill, index) => (
+    <span
+      key={index}
+      className="bg-purple-600/20 text-white text-xl px-5 py-2 rounded-full font-medium flex items-center gap-2 justify-center"
+    >
+      <Code className="text-purple" size={22} />
+      {skill}
+    </span>
+  ))}
+</div>
         </div>
         <div className="glass-card mb-8">
-          <h3 className="text-xl font-bold text-purple-300 mb-4">Frameworks</h3>
-          <div className="flex flex-wrap gap-4">
-            {skills.frameworks.map((framework, index) => (
-              <span
-                key={index}
-                className="bg-purple-600/20 text-white text-xl px-5 py-2 rounded-full font-medium flex items-center gap-2"
-              >
-                <Code className="text-purple" size={22} />
-                {framework}
-              </span>
-            ))}
-          </div>
+          <h3 className="text-xl font-bold text-purple-300 mb-4">🧰 Frameworks & Libraries</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+  {skills.frameworks.map((framework, index) => (
+    <span
+      key={index}
+      className="bg-purple-600/20 text-white text-xl px-5 py-2 rounded-full font-medium flex items-center gap-2 justify-center"
+    >
+      <Code className="text-purple" size={22} />
+      {framework}
+    </span>
+  ))}
+</div>
         </div>
         <div className="glass-card mb-8">
-          <h3 className="text-xl font-bold text-purple-300 mb-4">Developer Tools</h3>
-          <div className="flex flex-wrap gap-4">
-            {skills.tools.map((tool, index) => (
-              <span
-                key={index}
-                className="bg-purple-600/20 text-white text-xl px-5 py-2 rounded-full font-medium flex items-center gap-2"
-              >
-                <Code className="text-purple" size={22} />
-                {tool}
-              </span>
-            ))}
-          </div>
-        </div>
-        <div className="glass-card">
-          <h3 className="text-xl font-bold text-purple-300 mb-4">Certifications</h3>
-          <div className="flex flex-wrap gap-4">
-            {skills.certifications.map((cert, index) => (
-              <div key={index} className="text-white text-xl flex items-center gap-3">
-                <Award size={22} className="text-purple" />
-                <span>{cert}</span>
-              </div>
-            ))}
-          </div>
+          <h3 className="text-xl font-bold text-purple-300 mb-4">🔧 Developer Tools & Platforms</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+  {skills.tools.map((tool, index) => (
+    <span
+      key={index}
+      className="bg-purple-600/20 text-white text-xl px-5 py-2 rounded-full font-medium flex items-center gap-2 justify-center"
+    >
+      <Code className="text-purple" size={22} />
+      {tool}
+    </span>
+  ))}
+</div>
         </div>
       </section>
 
