@@ -10,6 +10,7 @@ const Portfolio = () => {
   const [loading, setLoading] = useState(true);
   const [typedName, setTypedName] = useState('');
   const formRef = useRef();
+  const menuRef = useRef(null);
 
   // Typing animation effect
   useEffect(() => {
@@ -138,61 +139,74 @@ const Portfolio = () => {
     }
   ];
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isMenuOpen]);
+
   return (
     <div className="portfolio-container">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50" style={{
-  background: 'rgba(0, 0, 0, 0.2)',
-  backdropFilter: 'blur(10px)',
-  borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
-}}>
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="flex justify-between items-center py-4">
-      <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-        Ananya Menon
-      </div>
-      {/* Dropdown menu button (always visible, right corner) */}
-      <div className="relative">
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="text-white p-2 focus:outline-none"
-          aria-label="Open navigation menu"
-        >
-          {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-        {/* Dropdown menu */}
-        {isMenuOpen && (
-          <div
-            className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-[#18122b] ring-1 ring-black ring-opacity-5 z-50"
-            style={{
-              background: 'rgba(0,0,0,0.95)',
-              backdropFilter: 'blur(10px)',
-              border: '1px solid rgba(255,255,255,0.1)'
-            }}
-          >
-            <div className="py-2">
-              {['Home', 'About', 'Experience', 'Skills', 'Projects', 'Education', 'Contact'].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => {
-                    scrollToSection(item.toLowerCase());
-                    setIsMenuOpen(false);
+        background: 'rgba(0, 0, 0, 0.2)',
+        backdropFilter: 'blur(10px)',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
+      }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Ananya Menon
+            </div>
+            {/* Dropdown menu button (always visible, right corner) */}
+            <div className="relative">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-white p-2 focus:outline-none"
+                aria-label="Open navigation menu"
+              >
+                {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+              </button>
+              {/* Dropdown menu */}
+              {isMenuOpen && (
+                <div
+                  ref={menuRef}
+                  className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-[#18122b] ring-1 ring-black ring-opacity-5 z-50"
+                  style={{
+                    background: 'rgba(0,0,0,0.95)',
+                    backdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(255,255,255,0.1)'
                   }}
-                  className={`block w-full text-left px-6 py-3 text-white/90 hover:bg-purple-800 transition-colors ${
-                    activeSection === item.toLowerCase() ? 'bg-purple-900 text-purple-300' : ''
-                  }`}
-                  style={{ fontSize: "1.1rem" }}
                 >
-                  {item}
-                </button>
-              ))}
+                  <div className="py-2">
+                    {['Home', 'About', 'Experience', 'Skills', 'Projects', 'Education', 'Contact'].map((item) => (
+                      <button
+                        key={item}
+                        onClick={() => {
+                          scrollToSection(item.toLowerCase());
+                          setIsMenuOpen(false);
+                        }}
+                        className={`block w-full text-left px-6 py-3 text-white/90 hover:bg-purple-800 transition-colors ${
+                          activeSection === item.toLowerCase() ? 'bg-purple-900 text-purple-300' : ''
+                        }`}
+                        style={{ fontSize: "1.1rem" }}
+                      >
+                        {item}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-        )}
-      </div>
-    </div>
-  </div>
-</nav>
+        </div>
+      </nav>
 
       {/* Hero Section */}
         <section id="home" className="hero-section" style={{ minHeight: '90vh', paddingTop: '8rem', paddingBottom: '6rem' }}>
@@ -231,16 +245,17 @@ const Portfolio = () => {
   <Mail size={20} />
   Get In Touch
 </a>
-            <a
-  href="/resume.pdf"
+ <a
+  href="/Portfolio/Resume.pdf"
   className="btn-secondary"
-  download
   target="_blank"
   rel="noopener noreferrer"
 >
   <Download size={20} />
   Download Resume
 </a>
+
+
           </div>
 
           <div className="social-links">
