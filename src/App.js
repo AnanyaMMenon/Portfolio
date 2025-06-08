@@ -232,7 +232,7 @@ const Portfolio = () => {
   Get In Touch
 </a>
             <a
-  href="/resume.pdf" // This path must match the file name in your public folder
+  href="/resume.pdf"
   className="btn-secondary"
   download
   target="_blank"
