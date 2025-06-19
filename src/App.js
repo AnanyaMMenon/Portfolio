@@ -402,7 +402,12 @@ Coded my way through a Master's at Illinois Tech. 3+ years of breaking, fixing, 
                   src={exp.logo} 
                   alt={`${exp.company} logo`}
                   className="company-logo"
-                  onError={e => { e.target.style.display = 'none'; }}
+                  onLoad={() => console.log(`Logo loaded successfully: ${exp.company}`)}
+                  onError={(e) => {
+                    console.log(`Logo failed to load: ${exp.company}`, e.target.src);
+                    e.target.style.display = 'none';
+                    e.target.nextSibling.style.display = 'flex';
+                  }}
                 />
                 <div className="company-logo-fallback" style={{ display: 'none' }}>
                   <span className="text-2xl font-bold text-purple-400">{exp.company.charAt(0)}</span>

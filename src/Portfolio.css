@@ -271,6 +271,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .glass-card:hover {
@@ -326,6 +328,62 @@ body {
   .section {
     padding: 3rem 1rem;
   }
+  
+  /* Mobile fixes for glass cards */
+  .glass-card {
+    min-width: auto;
+    width: 100%;
+    padding: 1.5rem 1rem;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Experience section specific mobile fixes */
+  #experience .glass-card {
+    padding: 1.5rem 1rem;
+    width: 100%;
+    min-width: auto;
+  }
+  
+  #experience .glass-card .flex {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  #experience .glass-card .md\\:flex-row {
+    flex-direction: column;
+  }
+  
+  #experience .glass-card .md\\:items-center {
+    align-items: flex-start;
+  }
+  
+  #experience .glass-card .md\\:justify-between {
+    justify-content: flex-start;
+  }
+  
+  #experience .glass-card .md\\:mb-0 {
+    margin-bottom: 1rem;
+  }
+  
+  #experience .glass-card .md\\:text-right {
+    text-align: left;
+  }
+  
+  #experience .glass-card .md\\:w-auto {
+    width: 100%;
+  }
+  
+  /* Company logo mobile adjustments */
+  .company-logo-container {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .company-logo-fallback {
+    font-size: 1.2rem;
+  }
 }
 
 /* Utility classes */
@@ -379,14 +437,16 @@ body {
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.2);
   flex-shrink: 0;
+  position: relative;
 }
 
 .company-logo {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 8px;
+  padding: 6px;
   transition: transform 0.3s ease;
+  display: block;
 }
 
 .company-logo:hover {
@@ -394,6 +454,9 @@ body {
 }
 
 .company-logo-fallback {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   display: flex;
@@ -403,6 +466,7 @@ body {
   color: white;
   font-weight: bold;
   font-size: 1.5rem;
+  border-radius: 12px;
 }
 
 /* Responsive adjustments for company logos */
