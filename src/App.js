@@ -388,53 +388,51 @@ Coded my way through a Master's at Illinois Tech. 3+ years of breaking, fixing, 
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className={`section bg-black/20 ${visibleSections.has('experience') ? 'section-visible' : 'section-hidden'}`}>
-  <div className="max-w-6xl mx-auto">
-    <h2 className="text-4xl font-bold text-white mb-12 text-center">Experience</h2>
-    <div className="space-y-8">
-      {experiences.map((exp, index) => (
-        <div key={index} className="glass-card">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 w-full">
-            {/* Left: Logo, Company, Location */}
-            <div className="flex items-center gap-4 mb-4 md:mb-0 text-left">
-              <div className="company-logo-container">
-                <img 
-                  src={exp.logo} 
-                  alt={`${exp.company} logo`}
-                  className="company-logo"
-                  onLoad={() => console.log(`Logo loaded successfully: ${exp.company}`)}
-                  onError={(e) => {
-                    console.log(`Logo failed to load: ${exp.company}`, e.target.src);
-                    e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'flex';
-                  }}
-                />
-                <div className="company-logo-fallback" style={{ display: 'none' }}>
-                  <span className="text-2xl font-bold text-purple-400">{exp.company.charAt(0)}</span>
+      <section id="experience" className={`section section-dark ${visibleSections.has('experience') ? 'section-visible' : 'section-hidden'}`}>
+        <h2 className="section-title">Experience</h2>
+        <div className="space-y-8">
+          {experiences.map((exp, index) => (
+            <div key={index} className="glass-card">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 w-full">
+                {/* Left: Logo, Company, Location */}
+                <div className="flex items-center gap-4 mb-4 md:mb-0 text-left">
+                  <div className="company-logo-container">
+                    <img 
+                      src={exp.logo} 
+                      alt={`${exp.company} logo`}
+                      className="company-logo"
+                      onLoad={() => console.log(`Logo loaded successfully: ${exp.company}`)}
+                      onError={(e) => {
+                        console.log(`Logo failed to load: ${exp.company}`, e.target.src);
+                        e.target.style.display = 'none';
+                        e.target.nextSibling.style.display = 'flex';
+                      }}
+                    />
+                    <div className="company-logo-fallback" style={{ display: 'none' }}>
+                      <span className="text-2xl font-bold text-purple-400">{exp.company.charAt(0)}</span>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-1">{exp.title}</h3>
+                    <p className="text-purple-300 text-lg mb-0">{exp.company}</p>
+                    <p className="text-muted text-base">{exp.location}</p>
+                  </div>
                 </div>
+                {/* Right: Date */}
+                <span className="text-white/60 text-sm md:text-base md:text-right w-full md:w-auto">{exp.period}</span>
               </div>
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-1">{exp.title}</h3>
-                <p className="text-purple-300 text-lg mb-0">{exp.company}</p>
-                <p className="text-muted text-base">{exp.location}</p>
-              </div>
+              <ul className="space-y-3">
+                {exp.achievements.map((achievement, i) => (
+                  <li key={i} className="text-white/80 flex items-start gap-3">
+                    <span className="text-purple-400 mt-2">•</span>
+                    <span>{achievement}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-            {/* Right: Date */}
-            <span className="text-white/60 text-sm md:text-base md:text-right w-full md:w-auto">{exp.period}</span>
-          </div>
-          <ul className="space-y-3">
-            {exp.achievements.map((achievement, i) => (
-              <li key={i} className="text-white/80 flex items-start gap-3">
-                <span className="text-purple-400 mt-2">•</span>
-                <span>{achievement}</span>
-              </li>
-            ))}
-          </ul>
+          ))}
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </section>
 
       {/* Skills Section */}
       <section id="skills" className={`section ${visibleSections.has('skills') ? 'section-visible' : 'section-hidden'}`}>

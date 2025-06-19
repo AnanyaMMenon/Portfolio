@@ -331,58 +331,133 @@ body {
   
   /* Mobile fixes for glass cards */
   .glass-card {
-    min-width: auto;
-    width: 100%;
-    padding: 1.5rem 1rem;
-    margin: 0;
-    box-sizing: border-box;
+    min-width: auto !important;
+    width: 100% !important;
+    padding: 1.5rem 1rem !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
   }
   
   /* Experience section specific mobile fixes */
+  #experience {
+    padding: 3rem 1rem !important;
+    overflow: hidden !important;
+  }
+  
   #experience .glass-card {
-    padding: 1.5rem 1rem;
-    width: 100%;
-    min-width: auto;
+    padding: 1.5rem 1rem !important;
+    width: 100% !important;
+    min-width: auto !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+  
+  #experience .glass-card > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
   }
   
   #experience .glass-card .flex {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+    width: 100% !important;
   }
   
   #experience .glass-card .md\\:flex-row {
-    flex-direction: column;
+    flex-direction: column !important;
   }
   
   #experience .glass-card .md\\:items-center {
-    align-items: flex-start;
+    align-items: flex-start !important;
   }
   
   #experience .glass-card .md\\:justify-between {
-    justify-content: flex-start;
+    justify-content: flex-start !important;
   }
   
   #experience .glass-card .md\\:mb-0 {
-    margin-bottom: 1rem;
+    margin-bottom: 1rem !important;
   }
   
   #experience .glass-card .md\\:text-right {
-    text-align: left;
+    text-align: left !important;
   }
   
   #experience .glass-card .md\\:w-auto {
-    width: 100%;
+    width: 100% !important;
   }
   
   /* Company logo mobile adjustments */
   .company-logo-container {
-    width: 50px;
-    height: 50px;
+    width: 50px !important;
+    height: 50px !important;
+    flex-shrink: 0 !important;
   }
   
   .company-logo-fallback {
-    font-size: 1.2rem;
+    font-size: 1.2rem !important;
+  }
+  
+  /* Text sizing for mobile */
+  #experience .glass-card h3 {
+    font-size: 1.5rem !important;
+  }
+  
+  #experience .glass-card p {
+    font-size: 1rem !important;
+  }
+  
+  #experience .glass-card span {
+    font-size: 0.9rem !important;
+  }
+  
+  /* About section specific mobile fixes */
+  #about {
+    padding: 3rem 1rem !important;
+    overflow: hidden !important;
+  }
+  
+  #about .grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  
+  #about .grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  #about .glass-card {
+    min-width: auto !important;
+    width: 100% !important;
+    padding: 1.5rem 1rem !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+  
+  #about .glass-card h3 {
+    font-size: 1.2rem !important;
+  }
+  
+  #about .glass-card p {
+    font-size: 0.9rem !important;
+  }
+  
+  #about .text-light {
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+  }
+  
+  #about .flex.flex-wrap {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+  
+  #about .flex.flex-wrap > div {
+    width: 100% !important;
   }
 }
 
