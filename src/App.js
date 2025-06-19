@@ -162,6 +162,7 @@ const Portfolio = () => {
     {
       title: 'Software Engineer Intern',
       company: 'CDK Global',
+      logo: '/cdk.png',
       location: 'Chicago, IL',
       period: 'June 2024 – May 2025',
       achievements: [
@@ -174,6 +175,7 @@ const Portfolio = () => {
     {
       title: 'Senior Cloud Engineer',
       company: 'LTIMindtree',
+      logo: '/lti.png',
       location: 'Bangalore, IN',
       period: 'Sept 2021 – July 2023',
       achievements: [
@@ -185,6 +187,7 @@ const Portfolio = () => {
     {
       title: 'Graduate Engineer Trainee',
       company: 'LTIMindtree',
+      logo: '/lti.png',
       location: 'Bangalore, IN',
       period: 'June 2021 – Sept 2021',
       achievements: [
@@ -195,6 +198,7 @@ const Portfolio = () => {
     {
       title: 'Data Analyst Intern',
       company: 'Daily Ninja',
+      logo: '/dn.jpeg',
       location: 'Bangalore, IN',
       period: 'Jun 2019 – July 2019',
       achievements: [
@@ -390,12 +394,28 @@ Coded my way through a Master's at Illinois Tech. 3+ years of breaking, fixing, 
           <div className="space-y-8">
             {experiences.map((exp, index) => (
               <div key={index} className="bg-white/5 backdrop-blur-lg rounded-xl p-8 border border-white/10 hover:border-purple-400/30 transition-all duration-300">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                  <div>
-                    <h3 className="text-2xl font-bold text-white mb-2">{exp.title}</h3>
-                    <p className="text-purple-300 text-lg">{exp.company} • {exp.location}</p>
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                  <div className="flex items-center gap-4 mb-4 md:mb-0">
+                    <div className="company-logo-container">
+                      <img 
+                        src={exp.logo} 
+                        alt={`${exp.company} logo`}
+                        className="company-logo"
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          e.target.nextSibling.style.display = 'flex';
+                        }}
+                      />
+                      <div className="company-logo-fallback" style={{ display: 'none' }}>
+                        <span className="text-2xl font-bold text-purple-400">{exp.company.charAt(0)}</span>
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-white mb-2">{exp.title}</h3>
+                      <p className="text-purple-300 text-lg">{exp.company} • {exp.location}</p>
+                    </div>
                   </div>
-                  <span className="text-white/60 text-sm md:text-base mt-2 md:mt-0">{exp.period}</span>
+                  <span className="text-white/60 text-sm md:text-base">{exp.period}</span>
                 </div>
                 <ul className="space-y-3">
                   {exp.achievements.map((achievement, i) => (
