@@ -14,6 +14,39 @@ body {
   font-size: 25px;
 }
 
+/* Section animation styles */
+.section-hidden {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-out;
+}
+
+.section-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger animation for grid items */
+.section-visible .glass-card {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.section-visible .glass-card:nth-child(1) { animation-delay: 0.1s; }
+.section-visible .glass-card:nth-child(2) { animation-delay: 0.2s; }
+.section-visible .glass-card:nth-child(3) { animation-delay: 0.3s; }
+.section-visible .glass-card:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Main container with gradient background */
 .portfolio-container {
   background: linear-gradient(135deg, #0f172a 0%, #581c87 30%, #7c3aed 50%, #581c87 70%, #0f172a 100%);

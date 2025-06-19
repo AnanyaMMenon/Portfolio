@@ -9,8 +9,45 @@ const Portfolio = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
   const [typedName, setTypedName] = useState('');
+  const [visibleSections, setVisibleSections] = useState(new Set(['home']));
   const formRef = useRef();
   const menuRef = useRef(null);
+
+  // Set zoom to 100% on page load
+  useEffect(() => {
+    document.body.style.zoom = '100%';
+    // For Firefox
+    document.body.style.transform = 'scale(1)';
+    document.body.style.transformOrigin = 'top left';
+  }, []);
+
+  // Intersection Observer for section animations
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id;
+          setVisibleSections(prev => new Set([...prev, sectionId]));
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    const sections = ['home', 'about', 'experience', 'skills', 'projects', 'education', 'contact'];
+    sections.forEach(sectionId => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   // Typing animation effect
   useEffect(() => {
@@ -301,12 +338,12 @@ const Portfolio = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="section">
+      <section id="about" className={`section ${visibleSections.has('about') ? 'section-visible' : 'section-hidden'}`}>
         <h2 className="section-title">About Me</h2>
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <p className="text-light mb-6">
-Coded my way through a Master’s at Illinois Tech. 3+ years of breaking, fixing, and building stuff in .NET, Azure, and full-stack land. <br></br>If it scales and doesn’t crash, that’s a win. 
+Coded my way through a Master's at Illinois Tech. 3+ years of breaking, fixing, and building stuff in .NET, Azure, and full-stack land. <br></br>If it scales and doesn't crash, that's a win. 
             </p>
             <p className="text-light mb-6">
              Powered by caffeine and questionable Wi-Fi.  </p>
@@ -347,7 +384,7 @@ Coded my way through a Master’s at Illinois Tech. 3+ years of breaking, fixing
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-20 px-4 bg-black/20">
+      <section id="experience" className={`py-20 px-4 bg-black/20 ${visibleSections.has('experience') ? 'section-visible' : 'section-hidden'}`}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-white mb-12 text-center">Experience</h2>
           <div className="space-y-8">
@@ -375,7 +412,7 @@ Coded my way through a Master’s at Illinois Tech. 3+ years of breaking, fixing
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="section">
+      <section id="skills" className={`section ${visibleSections.has('skills') ? 'section-visible' : 'section-hidden'}`}>
         <h2 className="section-title text-4xl font-bold text-white mb-12 text-center">Technical Skills</h2>
         <div className="glass-card mb-8">
           <h3 className="text-xl font-bold text-purple-300 mb-4">🧠 Programming Languages</h3>
@@ -423,7 +460,7 @@ Coded my way through a Master’s at Illinois Tech. 3+ years of breaking, fixing
 
 
       {/* Projects Section */}
-      <section id="projects" className="section section-dark">
+      <section id="projects" className={`section section-dark ${visibleSections.has('projects') ? 'section-visible' : 'section-hidden'}`}>
         <h2 className="section-title">Publication</h2>
         <div className="max-w-4xl mx-auto">
           <div className="glass-card">
@@ -457,7 +494,7 @@ Coded my way through a Master’s at Illinois Tech. 3+ years of breaking, fixing
       </section>
 
       {/* Education Section */}
-      <section id="education" className="section">
+      <section id="education" className={`section ${visibleSections.has('education') ? 'section-visible' : 'section-hidden'}`}>
         <h2 className="section-title">Education</h2>
         <div className="grid md:grid-cols-2 gap-8">
           <div className="glass-card">
@@ -476,7 +513,7 @@ Coded my way through a Master’s at Illinois Tech. 3+ years of breaking, fixing
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="section section-dark">
+      <section id="contact" className={`section section-dark ${visibleSections.has('contact') ? 'section-visible' : 'section-hidden'}`}>
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="section-title">Let's Connect</h2>
           <p className="text-xl text-light mb-12">
@@ -513,7 +550,7 @@ Coded my way through a Master’s at Illinois Tech. 3+ years of breaking, fixing
       </section>
 
       {/* Contact Form Section (bottom of the page) */}
-<section id="contact-form" className="section section-dark">
+<section id="contact-form" className={`section section-dark ${visibleSections.has('contact') ? 'section-visible' : 'section-hidden'}`}>
   <div className="contact-form-card">
     <h3 className="text-2xl font-bold text-purple-300 mb-4 text-center">Send me a message</h3>
     <form ref={formRef} onSubmit={sendEmail} className="space-y-4 w-full">
