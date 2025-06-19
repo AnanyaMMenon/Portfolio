@@ -394,25 +394,28 @@ Coded my way through a Master's at Illinois Tech. 3+ years of breaking, fixing, 
     <div className="space-y-8">
       {experiences.map((exp, index) => (
         <div key={index} className="glass-card">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-            <div className="flex items-center gap-4 mb-4 md:mb-0">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 w-full">
+            {/* Left: Logo, Company, Location */}
+            <div className="flex items-center gap-4 mb-4 md:mb-0 text-left">
               <div className="company-logo-container">
                 <img 
                   src={exp.logo} 
                   alt={`${exp.company} logo`}
                   className="company-logo"
-                  onError={(e) => { e.target.style.display = 'none'; }}
+                  onError={e => { e.target.style.display = 'none'; }}
                 />
                 <div className="company-logo-fallback" style={{ display: 'none' }}>
                   <span className="text-2xl font-bold text-purple-400">{exp.company.charAt(0)}</span>
                 </div>
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-white mb-2">{exp.title}</h3>
-                <p className="text-purple-300 text-lg">{exp.company} • {exp.location}</p>
+                <h3 className="text-2xl font-bold text-white mb-1">{exp.title}</h3>
+                <p className="text-purple-300 text-lg mb-0">{exp.company}</p>
+                <p className="text-muted text-base">{exp.location}</p>
               </div>
             </div>
-            <span className="text-white/60 text-sm md:text-base">{exp.period}</span>
+            {/* Right: Date */}
+            <span className="text-white/60 text-sm md:text-base md:text-right w-full md:w-auto">{exp.period}</span>
           </div>
           <ul className="space-y-3">
             {exp.achievements.map((achievement, i) => (
