@@ -167,11 +167,13 @@ const Portfolio = () => {
     ]
   };
 
+  // Experience data (responsive logo paths, mobile-friendly)
   const experiences = [
     {
       title: 'Software Engineer Intern',
       company: 'CDK Global',
-      logo: '/cdk.png',
+      // Use relative path for logo, ensure image is in public folder for React
+      logo: require('./assets/cdk.png'),
       location: 'Chicago, IL',
       period: 'June 2024 – May 2025',
       achievements: [
@@ -187,7 +189,7 @@ const Portfolio = () => {
     {
       title: 'Senior Cloud Engineer',
       company: 'LTIMindtree',
-      logo: '/lti.png',
+      logo: require('./assets/lti.png'),
       location: 'Bangalore, IN',
       period: 'Sept 2021 – July 2023',
       achievements: [
@@ -202,7 +204,7 @@ const Portfolio = () => {
     {
       title: 'Graduate Engineer Trainee',
       company: 'LTIMindtree',
-      logo: '/lti.png',
+      logo: require('./assets/lti.png'),
       location: 'Bangalore, IN',
       period: 'June 2021 – Sept 2021',
       achievements: [
@@ -216,7 +218,7 @@ const Portfolio = () => {
     {
       title: 'Data Analyst Intern',
       company: 'Daily Ninja',
-      logo: '/dn.jpeg',
+      logo: require('./assets/dn.jpeg'),
       location: 'Bangalore, IN',
       period: 'Jun 2019 – July 2019',
       achievements: [
@@ -242,7 +244,7 @@ const Portfolio = () => {
   }, [isMenuOpen]);
 
   return (
-    <div className="portfolio-container" style={{ paddingTop: '80px' }}>
+    <div className="portfolio-container min-h-screen bg-gradient-to-br from-purple-900 to-purple-700 px-2 sm:px-4">
       {/* Sticky Top Navigation Bar */}
       <nav
   className="fixed top-0 left-0 w-full z-[9999] border-b border-purple-700 shadow-lg"
@@ -324,7 +326,9 @@ const Portfolio = () => {
           <div className="hero-content" style={{ maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
             <div className="hero-avatar">
   <img
-    src="image.jpg" // If in public folder
+    src={
+      require('./assets/image.jpg') // Use relative path for image
+    } // If in public folder
     alt=""
     style={{
       width: '100%',
@@ -433,49 +437,49 @@ const Portfolio = () => {
 </motion.section>
 
       {/* Experience Section */}
-      <section id="experience" className={`section bg-black/20 ${visibleSections.has('experience') ? 'section-visible' : 'section-hidden'}`}>
-  <div className="max-w-6xl mx-auto">
-    <h2 className="text-4xl font-bold text-white mb-12 text-center">Experience</h2>
-    <div className="space-y-8">
-      {experiences.map((exp, index) => (
-        <motion.div
-  className="glass-card"
-  whileHover={{ scale: 1.04, boxShadow: "0 20px 40px rgba(168,85,247,0.25)" }}
-  data-aos="fade-up"
-  data-aos-delay={index * 100}
->
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 w-full">
-            {/* Left: Logo, Company, Location */}
-            <div className="flex items-center gap-4 mb-4 md:mb-0 text-left">
-              <div className="company-logo-container">
-                <img 
-                  src={exp.logo} 
-                  alt={`${exp.company} logo`}
-                  className="company-logo"
-                  onError={e => { e.target.style.display = 'none'; }}
-                />
-                <div className="company-logo-fallback" style={{ display: 'none' }}>
-                  <span className="text-2xl font-bold text-purple-400">{exp.company.charAt(0)}</span>
+      <section id="experience" className={`section bg-black/20 ${visibleSections.has('experience') ? 'section-visible' : 'section-hidden'} px-0 sm:px-2`}>
+    <div className="max-w-6xl mx-auto w-full">
+      <h2 className="text-4xl font-bold text-white mb-12 text-center">Experience</h2>
+      <div className="space-y-8">
+        {experiences.map((exp, index) => (
+          <motion.div
+            className="glass-card w-full"
+            whileHover={{ scale: 1.04, boxShadow: "0 20px 40px rgba(168,85,247,0.25)" }}
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+          >
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 w-full">
+              {/* Left: Logo, Company, Location */}
+              <div className="flex items-center gap-4 mb-4 md:mb-0 text-left">
+                <div className="company-logo-container w-14 h-14 flex-shrink-0 mr-3">
+                  <img 
+                    src={exp.logo}
+                    alt={`${exp.company} logo`}
+                    className="company-logo w-14 h-14 object-contain rounded bg-white"
+                    onError={e => { e.target.style.display = 'none'; }}
+                  />
+                  <div className="company-logo-fallback" style={{ display: 'none' }}>
+                    <span className="text-2xl font-bold text-purple-400">{exp.company.charAt(0)}</span>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-1">{exp.title}</h3>
+                  <p className="text-purple-300 text-lg mb-0">{exp.company}</p>
+                  <p className="text-muted text-base">{exp.location}</p>
                 </div>
               </div>
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-1">{exp.title}</h3>
-                <p className="text-purple-300 text-lg mb-0">{exp.company}</p>
-                <p className="text-muted text-base">{exp.location}</p>
-              </div>
+              {/* Right: Date */}
+              <span className="text-white/60 text-sm md:text-base md:text-right w-full md:w-auto">{exp.period}</span>
             </div>
-            {/* Right: Date */}
-            <span className="text-white/60 text-sm md:text-base md:text-right w-full md:w-auto">{exp.period}</span>
-          </div>
-          <ul className="space-y-3">
-            {exp.achievements.map((achievement, i) => (
-              <li key={i} className="text-white/80 flex items-start gap-3">
-                <span className="text-purple-400 mt-2">•</span>
-                <span>{achievement}</span>
-              </li>
-            ))}
-          </ul>
-          {exp.skills && exp.skills.length > 0 && (
+            <ul className="space-y-2">
+  {exp.achievements.map((achievement, i) => (
+    <li key={i} className="text-white/80 flex flex-row items-start gap-2 leading-relaxed">
+      <span className="text-purple-400 pt-1">•</span>
+      <span className="flex-1">{achievement}</span>
+    </li>
+  ))}
+</ul>
+            {exp.skills && exp.skills.length > 0 && (
   <div className="flex flex-wrap gap-3 mt-6">
     {exp.skills.map((skill, idx) => (
       <span
@@ -499,63 +503,66 @@ const Portfolio = () => {
 </section>
 
       {/* Skills Section */}
-      <section id="skills" className={`section ${visibleSections.has('skills') ? 'section-visible' : 'section-hidden'}`}>
-  <h2 className="section-title text-4xl font-bold text-white mb-12 text-center">Technical Skills</h2>
-  <div className="glass-card mb-8">
-    <h3 className="text-xl font-bold text-white mb-4">🧠 Programming Languages</h3>
-    <div className="flex flex-wrap gap-3">
-      {skills.languages.map((skill, index) => (
-        <span
-          key={index}
-          className="bg-purple-800/80 text-purple-100 px-5 py-2 rounded-full text-base font-semibold shadow-md"
-          style={{
-            fontSize: '1.15rem',
-            letterSpacing: '0.01em',
-            display: 'inline-block',
-          }}
-        >
-          {skill}
-        </span>
-      ))}
+      <section id="skills" className={`section ${visibleSections.has('skills') ? 'section-visible' : 'section-hidden'} px-0 sm:px-2`}>
+    <h2 className="section-title text-3xl sm:text-4xl font-bold text-white mb-8 sm:mb-12 text-center">Technical Skills</h2>
+    <div className="glass-card mb-8">
+      <h3 className="text-lg sm:text-xl font-bold text-white mb-4">🧠 Programming Languages</h3>
+      <div className="flex flex-wrap gap-2 sm:gap-3">
+        {skills.languages.map((skill, index) => (
+          <span
+            key={index}
+            className="bg-purple-800/80 text-purple-100 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-sm sm:text-base font-semibold shadow-md whitespace-nowrap"
+            style={{
+              letterSpacing: '0.01em',
+              display: 'inline-block',
+              minWidth: '80px',
+              textAlign: 'center',
+            }}
+          >
+            {skill}
+          </span>
+        ))}
+      </div>
     </div>
-  </div>
-  <div className="glass-card mb-8">
-    <h3 className="text-xl font-bold text-white mb-4">🧰 Frameworks & Libraries</h3>
-    <div className="flex flex-wrap gap-3">
-      {skills.frameworks.map((framework, index) => (
-        <span
-          key={index}
-          className="bg-purple-800/80 text-purple-100 px-5 py-2 rounded-full text-base font-semibold shadow-md"
-          style={{
-            fontSize: '1.15rem',
-            letterSpacing: '0.01em',
-            display: 'inline-block',
-          }}
-        >
-          {framework}
-        </span>
-      ))}
+    <div className="glass-card mb-8">
+      <h3 className="text-lg sm:text-xl font-bold text-white mb-4">🧰 Frameworks & Libraries</h3>
+      <div className="flex flex-wrap gap-2 sm:gap-3">
+        {skills.frameworks.map((framework, index) => (
+          <span
+            key={index}
+            className="bg-purple-800/80 text-purple-100 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-sm sm:text-base font-semibold shadow-md whitespace-nowrap"
+            style={{
+              letterSpacing: '0.01em',
+              display: 'inline-block',
+              minWidth: '80px',
+              textAlign: 'center',
+            }}
+          >
+            {framework}
+          </span>
+        ))}
+      </div>
     </div>
-  </div>
-  <div className="glass-card mb-8">
-    <h3 className="text-xl font-bold text-white mb-4">🔧 Developer Tools & Platforms</h3>
-    <div className="flex flex-wrap gap-3">
-      {skills.tools.map((tool, index) => (
-        <span
-          key={index}
-          className="bg-purple-800/80 text-purple-100 px-5 py-2 rounded-full text-base font-semibold shadow-md"
-          style={{
-            fontSize: '1.15rem',
-            letterSpacing: '0.01em',
-            display: 'inline-block',
-          }}
-        >
-          {tool}
-        </span>
-      ))}
+    <div className="glass-card mb-8">
+      <h3 className="text-lg sm:text-xl font-bold text-white mb-4">🔧 Developer Tools & Platforms</h3>
+      <div className="flex flex-wrap gap-2 sm:gap-3">
+        {skills.tools.map((tool, index) => (
+          <span
+            key={index}
+            className="bg-purple-800/80 text-purple-100 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-sm sm:text-base font-semibold shadow-md whitespace-nowrap"
+            style={{
+              letterSpacing: '0.01em',
+              display: 'inline-block',
+              minWidth: '80px',
+              textAlign: 'center',
+            }}
+          >
+            {tool}
+          </span>
+        ))}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
       {/* Projects Section */}
