@@ -459,6 +459,19 @@ body {
   #about .flex.flex-wrap > div {
     width: 100% !important;
   }
+  
+  .glass-card ul,
+  .glass-card ol {
+    padding-left: 1rem !important;
+    list-style-position: inside !important;
+    text-align: left !important;
+  }
+  .glass-card li {
+    display: list-item !important;
+    white-space: normal !important;
+    word-break: break-word;
+    text-align: left !important;
+  }
 }
 
 /* Utility classes */
