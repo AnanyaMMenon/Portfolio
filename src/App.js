@@ -345,7 +345,8 @@ const Portfolio = () => {
           Software Engineer & Cloud Developer
             </p>
             <p className="hero-description" style={{ fontSize: '1.5rem', marginBottom: '2.5rem' }}>
-          Full-stack dev with cloud energy. Built with .NET, Azure, and a degree from Illinois Tech.
+            Full-stack developer specializing in .NET and Azure, with a Master’s degree from Illinois Tech.
+
             </p>
             
             <div className="hero-buttons">
@@ -625,7 +626,7 @@ const Portfolio = () => {
   <h3 className="text-2xl font-bold text-white mb-2 text-center">Bachelors of Technology</h3>
   <h3 className="text-2xl text-white mb-2 text-center">Electronics & Communication</h3>
   <p className="text-purple text-lg mb-2 text-center">Dayanand Sagar University</p>
-  <p className="text-muted text-center">• Bangalore, India • June 2021</p>
+  <p className="text-muted text-center"> Bangalore, India • June 2021</p>
 </div>
         </div>
       </section>
