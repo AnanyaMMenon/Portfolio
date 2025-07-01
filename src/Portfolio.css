@@ -472,6 +472,14 @@ body {
     word-break: break-word;
     text-align: left !important;
   }
+  
+  #publications .glass-card,
+  #publications .glass-card p,
+  #publications .glass-card li,
+  #publications .glass-card span {
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+  }
 }
 
 /* Utility classes */

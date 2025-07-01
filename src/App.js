@@ -45,8 +45,8 @@ const Portfolio = () => {
       });
     }, observerOptions);
 
-    // Observe all sections
-    const sections = ['home', 'about', 'experience', 'skills', 'projects', 'education', 'contact'];
+    // Add "publications" here
+    const sections = ['home', 'about', 'experience', 'skills', 'projects', 'publications', 'education', 'contact'];
     sections.forEach(sectionId => {
       const element = document.getElementById(sectionId);
       if (element) {
@@ -77,7 +77,8 @@ const Portfolio = () => {
   // Scroll spy: highlight nav link as section is in view
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'experience', 'skills', 'projects', 'education', 'contact'];
+      // Add "publications" here
+      const sections = ['home', 'about', 'experience', 'skills', 'projects', 'publications', 'education', 'contact'];
       const scrollPosition = window.scrollY + 120; // Offset for navbar height
 
       for (const section of sections) {
@@ -569,48 +570,177 @@ const Portfolio = () => {
     </div>
   </section>
 
+{/* Publications Section */}
+<section id="publications" className={`section ${visibleSections.has('publications') ? 'section-visible' : 'section-hidden'} px-0 sm:px-2`}>
+  <h2 className="section-title text-3xl sm:text-4xl font-bold text-white mb-8 sm:mb-12 text-center">Publications</h2>
+  <div className="max-w-6xl mx-auto w-full">
+    <div className="space-y-8">
+      <div className="glass-card w-full">
+        <h3 className="text-2xl font-bold text-white mb-2">Flask Based Web App on Diabetes Prediction</h3>
+        <p className="text-light mb-4">
+          Developed a comparative study of different classification algorithms on the Diabetes Dataset and built a Flask-based web app deployed on Heroku. Demonstrated that random forests provide better accuracy (81.17%).
+        </p>
+        <div className="flex flex-wrap gap-3 mb-4">
+          {["Python", "Flask", "Machine Learning", "Random Forest", "Heroku"].map((skill, idx) => (
+            <span
+              key={idx}
+              className="bg-purple-800/80 text-purple-100 px-5 py-2 rounded-full text-base font-semibold shadow-md"
+              style={{
+                fontSize: '1.15rem',
+                letterSpacing: '0.01em',
+                display: 'inline-block',
+              }}
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+        <a
+          href="https://link.springer.com/epdf/10.1007/978-981-16-6407-6_67?sharing_token=DwUKby1AiSeesSk0SQven_e4RwlQNchNByi7wbcMAY6qyTQEIZy7YhTdTpcA7llm7CLJWtfI5qeMB_dGoJJDqoqzMrQYZvUHLrkkcy3f-H2gIkfno4L2Az_ix1u_lkSzkRgwBjIcnVSQKC0reuL6ivfJ9tCgH5xqOS-6ZoHY_Bk%3D"
+          className="inline-flex items-center gap-2 text-white hover:text-purple-300 transition-colors"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <ExternalLink size={16} />
+          View Publication
+        </a>
+      </div>
+      {/* Add more publication cards below as needed */}
+    </div>
+  </div>
+</section>
 
       {/* Projects Section */}
-      <section id="projects" className={`section section-dark ${visibleSections.has('projects') ? 'section-visible' : 'section-hidden'}`}>
-        <h2 className="section-title">Publication</h2>
-        <div className="max-w-4xl mx-auto">
-          <div className="glass-card">
-            <h3 className="text-2xl font-bold text-white mb-4">Flask Based Web App on Diabetes Prediction Using Machine Learning</h3>
-            <p className="text-light mb-6">
-              Developed a comparative study of different classification algorithms models on the Diabetes Dataset to predict if the user has Diabetes 
-              and subsequently made a flask-based web app deployed on Heroku. Resulted in proof that random forests are efficient and provide better accuracy of 81.168%.
-            </p>
-            <div className="flex flex-wrap gap-3 mb-6">
-              {["Python", "Flask", "Machine Learning", "Random Forest", "Heroku"].map((skill, idx) => (
-                <span
-                  key={idx}
-                  className="bg-purple-800/80 text-purple-100 px-5 py-2 rounded-full text-base font-semibold shadow-md"
-                  style={{
-                    fontSize: '1.15rem',
-                    letterSpacing: '0.01em',
-                    display: 'inline-block',
-                  }}
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-            <div className="text-sm text-muted mb-4">
-              Published in: Proceedings of the 2nd International Conference on Recent Trends in Machine Learning, IoT, Smart Cities and Applications, 
-              Lecture Notes in Networks and Systems 237 • December 2021
-            </div>
-            <a
-              href="https://link.springer.com/epdf/10.1007/978-981-16-6407-6_67?sharing_token=DwUKby1AiSeesSk0SQven_e4RwlQNchNByi7wbcMAY6qyTQEIZy7YhTdTpcA7llm7CLJWtfI5qeMB_dGoJJDqoqzMrQYZvUHLrkkcy3f-H2gIkfno4L2Az_ix1u_lkSzkRgwBjIcnVSQKC0reuL6ivfJ9tCgH5xqOS-6ZoHY_Bk%3D"
-              className="inline-flex items-center gap-2 text-white hover:text-purple-300 transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <ExternalLink size={16} />
-              View Publication
-            </a>
-          </div>
+      <section id="projects" className={`section ${visibleSections.has('projects') ? 'section-visible' : 'section-hidden'} px-0 sm:px-2`}>
+  <h2 className="section-title text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-8 sm:mb-12 text-center">Projects</h2>
+  <div className="max-w-6xl mx-auto w-full">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* F1 App */}
+      <div className="glass-card w-full flex flex-col items-center">
+        <div
+          className="flex items-start justify-center w-full h-[150px] mb-4"
+          style={{ minHeight: 150, background: "#fff", borderRadius: "0.75rem 0.75rem 0 0", overflow: "hidden" }}
+        >
+          <img
+            src={require("./assets/f1_logo.png")}
+            alt="F1 App screenshot"
+            className="object-contain w-[220px] h-[120px] mt-4"
+            style={{ display: "block" }}
+          />
         </div>
-      </section>
+        <h3 className="text-lg sm:text-xl font-bold text-white mb-2 text-center">F1 App</h3>
+        <p className="text-light mb-4 text-justify text-sm sm:text-base">
+          This is an F1 Live Hub app, think of it as the Red Bull Racing of mobile dev. It pulls real-time data from the <i>Ergast API</i> and uses <i>OpenAI</i> to sound smart about driver backstories. `http` handles networking, `provider` keeps the state cool, and `shared_preferences` remembers your faves like a trusty pit crew. With tests to avoid mid-race crashes and sleek tabs for Drivers, Races, and Favorites, it keeps you on track—whether you're team Hamilton or Verstappen.
+        </p>
+        <div className="flex flex-wrap gap-2 mb-4">
+          {["Dart", "Flutter", "C++"].map((skill, idx) => (
+            <span
+              key={idx}
+              className="bg-purple-800/80 text-purple-100 px-4 py-1 rounded-full text-xs sm:text-sm font-semibold shadow-md"
+              style={{
+                letterSpacing: '0.01em',
+                display: 'inline-block',
+              }}
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+        <a
+          href="https://github.com/AnanyaMMenon/F1--App/blob/master/README.md"
+          className="inline-flex items-center gap-2 text-white hover:text-purple-300 transition-colors text-sm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <ExternalLink size={14} />
+          View Project
+        </a>
+      </div>
+      {/* ParkedIn */}
+      <div className="glass-card w-full flex flex-col items-center">
+        <div
+          className="flex items-start justify-center w-full h-[150px] mb-4"
+          style={{ minHeight: 150, background: "#fff", borderRadius: "0.75rem 0.75rem 0 0", overflow: "hidden" }}
+        >
+          <img
+            src={require("./assets/parking.png")}
+            alt="Parking App screenshot"
+            className="object-contain w-[220px] h-[120px] mt-4"
+            style={{ display: "block" }}
+          />
+        </div>
+        <h3 className="text-lg sm:text-xl font-bold text-white mb-2 text-center">ParkedIn</h3>
+        <p className="text-light mb-4 text-justify text-sm sm:text-base">
+ParkedIn helps people find parking in Chicago, pay for spots, and manage reservations without circling the block for hours. 🚗 It’s built with Flask blueprints for clean structure, using routes for users, lots, payments, reservations, and vehicles. It handles login, CRUD operations, and database management like a pro valet—so you can focus on getting parked, not parking.
+        </p>
+        <div className="flex flex-wrap gap-2 mb-4">
+          {["Python", "SQL", "Flask"].map((skill, idx) => (
+            <span
+              key={idx}
+              className="bg-purple-800/80 text-purple-100 px-4 py-1 rounded-full text-xs sm:text-sm font-semibold shadow-md"
+              style={{
+                letterSpacing: '0.01em',
+                display: 'inline-block',
+              }}
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+        <a
+          href="https://github.com/AnanyaMMenon/ParkedIn/tree/main"
+          className="inline-flex items-center gap-2 text-white hover:text-purple-300 transition-colors text-sm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <ExternalLink size={14} />
+          View Project
+        </a>
+      </div>
+      {/* Battleship */}
+      <div className="glass-card w-full flex flex-col items-center">
+        <div
+          className="flex items-start justify-center w-full h-[150px] mb-4"
+          style={{ minHeight: 150, background: "#fff", borderRadius: "0.75rem 0.75rem 0 0", overflow: "hidden" }}
+        >
+          <img
+            src={require("./assets/battleship.png")}
+            alt="Battleship App screenshot"
+            className="object-contain w-[220px] h-[120px] mt-4"
+            style={{ display: "block" }}
+          />
+        </div>
+        <h3 className="text-lg sm:text-xl font-bold text-white mb-2 text-center">Battleship</h3>
+        <p className="text-light mb-4 text-justify text-sm sm:text-base">
+          Battleship is a Flutter + Dart app where you can log in, matchmake, and sink ships on a smart 5x5 grid, playing against humans or AI. It uses a REST API for game and auth management, `http` for calls, `provider` for state, and `shared_preferences` for local storage—bringing turn-based naval battles with hits, misses, and sunk ships straight to your phone, minus the sea spray. 🚢💥
+        </p>
+        <div className="flex flex-wrap gap-2 mb-4">
+          {["Dart", "Flutter", "REST-API"].map((skill, idx) => (
+            <span
+              key={idx}
+              className="bg-purple-800/80 text-purple-100 px-4 py-1 rounded-full text-xs sm:text-sm font-semibold shadow-md"
+              style={{
+                letterSpacing: '0.01em',
+                display: 'inline-block',
+              }}
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+        <a
+          href="https://github.com/AnanyaMMenon/Battleship-"
+          className="inline-flex items-center gap-2 text-white hover:text-purple-300 transition-colors text-sm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <ExternalLink size={14} />
+          View Project
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Education Section */}
       <section id="education" className={`section ${visibleSections.has('education') ? 'section-visible' : 'section-hidden'}`}>
