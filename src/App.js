@@ -614,130 +614,92 @@ const Portfolio = () => {
       <section id="projects" className={`section ${visibleSections.has('projects') ? 'section-visible' : 'section-hidden'} px-0 sm:px-2`}>
   <h2 className="section-title text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-8 sm:mb-12 text-center">Projects</h2>
   <div className="max-w-6xl mx-auto w-full">
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      {/* F1 App */}
-      <div className="glass-card w-full flex flex-col items-center">
+    <div
+      className="flex overflow-x-auto gap-8 pb-4"
+      style={{
+        scrollSnapType: 'x mandatory',
+        WebkitOverflowScrolling: 'touch'
+      }}
+    >
+      {/* Example for 5 projects, repeat for each card */}
+      {[
+        {
+          title: 'F1 App',
+          description: 'This is an F1 Live Hub app, think of it as the Red Bull Racing of mobile dev. It pulls real-time data from the Ergast API and uses OpenAI to sound smart about driver backstories. http handles networking, provider keeps the state cool, and shared_preferences remembers your faves like a trusty pit crew. With tests to avoid mid-race crashes and sleek tabs for Drivers, Races, and Favorites, it keeps you on track—whether you\'re team Hamilton or Verstappen.',
+          skills: ['Dart', 'Flutter', 'C++'],
+          logo: require('./assets/f1_logo.png'),
+          link: 'https://github.com/AnanyaMMenon/F1--App/blob/master/README.md'
+        },
+        {
+          title: 'ParkedIn',
+          description: 'ParkedIn helps people find parking in Chicago, pay for spots, and manage reservations without circling the block for hours. 🚗 It’s built with Flask blueprints for clean structure, using routes for users, lots, payments, reservations, and vehicles. It handles login, CRUD operations, and database management like a pro valet—so you can focus on getting parked, not parking.',
+          skills: ['Python', 'SQL', 'Flask'],
+          logo: require('./assets/parking.png'),
+          link: 'https://github.com/AnanyaMMenon/ParkedIn/tree/main'
+        },
+        {
+          title: 'Battleship',
+          description: 'Battleship is a Flutter + Dart app where you can log in, matchmake, and sink ships on a smart 5x5 grid, playing against humans or AI. It uses a REST API for game and auth management, http for calls, provider for state, and shared_preferences for local storage—bringing turn-based naval battles with hits, misses, and sunk ships straight to your phone, minus the sea spray. 🚢💥',
+          skills: ['Dart', 'Flutter', 'REST-API'],
+          logo: require('./assets/battleship.png'),
+          link: 'https://github.com/AnanyaMMenon/Battleship-'
+        },
+        {
+          title: 'Snackcident',
+          description: 'Ever had a snackcident? Snackcident lets you track every bite and calculate your BMI to keep your health in check. Built with Flutter and Firebase, it logs calorie intake, analyzes nutrition, and keeps you honest—one snack at a time',
+          skills: ['Flutter', 'Firebase', 'OpenAi'],
+          logo: require('./assets/project4.png'),
+          link: 'https://github.com/AnanyaMMenon/Snackcident/tree/main'
+        }
+      ].map((project, idx) => (
         <div
-          className="flex items-start justify-center w-full h-[150px] mb-4"
-          style={{ minHeight: 150, background: "#fff", borderRadius: "0.75rem 0.75rem 0 0", overflow: "hidden" }}
+          key={idx}
+          className="glass-card flex-shrink-0 flex flex-col items-center"
+          style={{
+            width: '340px',
+            scrollSnapAlign: 'start'
+          }}
         >
-          <img
-            src={require("./assets/f1_logo.png")}
-            alt="F1 App screenshot"
-            className="object-contain w-[220px] h-[120px] mt-4"
-            style={{ display: "block" }}
-          />
+          <div
+            className="flex items-start justify-center w-full h-[150px] mb-4"
+            style={{ minHeight: 150, background: "#fff", borderRadius: "0.75rem 0.75rem 0 0", overflow: "hidden" }}
+          >
+            <img
+              src={project.logo}
+              alt={`${project.title} screenshot`}
+              className="object-contain w-[220px] h-[120px] mt-4"
+              style={{ display: "block" }}
+            />
+          </div>
+          <h3 className="text-lg sm:text-xl font-bold text-white mb-2 text-center">{project.title}</h3>
+          <p className="text-light mb-4 text-justify text-sm sm:text-base">
+            {project.description}
+          </p>
+          <div className="flex flex-wrap gap-2 mb-4">
+            {project.skills.map((skill, idx) => (
+              <span
+                key={idx}
+                className="bg-purple-800/80 text-purple-100 px-4 py-1 rounded-full text-xs sm:text-sm font-semibold shadow-md"
+                style={{
+                  letterSpacing: '0.01em',
+                  display: 'inline-block',
+                }}
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+          <a
+            href={project.link}
+            className="inline-flex items-center gap-2 text-white hover:text-purple-300 transition-colors text-sm"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <ExternalLink size={14} />
+            View Project
+          </a>
         </div>
-        <h3 className="text-lg sm:text-xl font-bold text-white mb-2 text-center">F1 App</h3>
-        <p className="text-light mb-4 text-justify text-sm sm:text-base">
-          This is an F1 Live Hub app, think of it as the Red Bull Racing of mobile dev. It pulls real-time data from the <i>Ergast API</i> and uses <i>OpenAI</i> to sound smart about driver backstories. `http` handles networking, `provider` keeps the state cool, and `shared_preferences` remembers your faves like a trusty pit crew. With tests to avoid mid-race crashes and sleek tabs for Drivers, Races, and Favorites, it keeps you on track—whether you're team Hamilton or Verstappen.
-        </p>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {["Dart", "Flutter", "C++"].map((skill, idx) => (
-            <span
-              key={idx}
-              className="bg-purple-800/80 text-purple-100 px-4 py-1 rounded-full text-xs sm:text-sm font-semibold shadow-md"
-              style={{
-                letterSpacing: '0.01em',
-                display: 'inline-block',
-              }}
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
-        <a
-          href="https://github.com/AnanyaMMenon/F1--App/blob/master/README.md"
-          className="inline-flex items-center gap-2 text-white hover:text-purple-300 transition-colors text-sm"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <ExternalLink size={14} />
-          View Project
-        </a>
-      </div>
-      {/* ParkedIn */}
-      <div className="glass-card w-full flex flex-col items-center">
-        <div
-          className="flex items-start justify-center w-full h-[150px] mb-4"
-          style={{ minHeight: 150, background: "#fff", borderRadius: "0.75rem 0.75rem 0 0", overflow: "hidden" }}
-        >
-          <img
-            src={require("./assets/parking.png")}
-            alt="Parking App screenshot"
-            className="object-contain w-[220px] h-[120px] mt-4"
-            style={{ display: "block" }}
-          />
-        </div>
-        <h3 className="text-lg sm:text-xl font-bold text-white mb-2 text-center">ParkedIn</h3>
-        <p className="text-light mb-4 text-justify text-sm sm:text-base">
-ParkedIn helps people find parking in Chicago, pay for spots, and manage reservations without circling the block for hours. 🚗 It’s built with Flask blueprints for clean structure, using routes for users, lots, payments, reservations, and vehicles. It handles login, CRUD operations, and database management like a pro valet—so you can focus on getting parked, not parking.
-        </p>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {["Python", "SQL", "Flask"].map((skill, idx) => (
-            <span
-              key={idx}
-              className="bg-purple-800/80 text-purple-100 px-4 py-1 rounded-full text-xs sm:text-sm font-semibold shadow-md"
-              style={{
-                letterSpacing: '0.01em',
-                display: 'inline-block',
-              }}
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
-        <a
-          href="https://github.com/AnanyaMMenon/ParkedIn/tree/main"
-          className="inline-flex items-center gap-2 text-white hover:text-purple-300 transition-colors text-sm"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <ExternalLink size={14} />
-          View Project
-        </a>
-      </div>
-      {/* Battleship */}
-      <div className="glass-card w-full flex flex-col items-center">
-        <div
-          className="flex items-start justify-center w-full h-[150px] mb-4"
-          style={{ minHeight: 150, background: "#fff", borderRadius: "0.75rem 0.75rem 0 0", overflow: "hidden" }}
-        >
-          <img
-            src={require("./assets/battleship.png")}
-            alt="Battleship App screenshot"
-            className="object-contain w-[220px] h-[120px] mt-4"
-            style={{ display: "block" }}
-          />
-        </div>
-        <h3 className="text-lg sm:text-xl font-bold text-white mb-2 text-center">Battleship</h3>
-        <p className="text-light mb-4 text-justify text-sm sm:text-base">
-          Battleship is a Flutter + Dart app where you can log in, matchmake, and sink ships on a smart 5x5 grid, playing against humans or AI. It uses a REST API for game and auth management, `http` for calls, `provider` for state, and `shared_preferences` for local storage—bringing turn-based naval battles with hits, misses, and sunk ships straight to your phone, minus the sea spray. 🚢💥
-        </p>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {["Dart", "Flutter", "REST-API"].map((skill, idx) => (
-            <span
-              key={idx}
-              className="bg-purple-800/80 text-purple-100 px-4 py-1 rounded-full text-xs sm:text-sm font-semibold shadow-md"
-              style={{
-                letterSpacing: '0.01em',
-                display: 'inline-block',
-              }}
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
-        <a
-          href="https://github.com/AnanyaMMenon/Battleship-"
-          className="inline-flex items-center gap-2 text-white hover:text-purple-300 transition-colors text-sm"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <ExternalLink size={14} />
-          View Project
-        </a>
-      </div>
+      ))}
     </div>
   </div>
 </section>
