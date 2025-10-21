@@ -650,6 +650,13 @@ const Portfolio = () => {
           skills: ['Flutter', 'Firebase', 'OpenAi'],
           logo: require('./assets/project4.png'),
           link: 'https://github.com/AnanyaMMenon/Snackcident/tree/main'
+        },
+        {
+          title: 'Pumpkin Raider',
+          description: 'Pumpkin Raider is a tiny cozy arcade project packed with three retro mini-games. It\'s all about comfy vibes, crunchy leaves, and silly high scores. Perfect for late-night snack breaks and aesthetic pumpkins.',
+          skills: ['React', 'TypeScript', 'IndexedDB'],
+          logo: require('./assets/pumpkin.gif'),
+          link: 'https://github.com/AnanyaMMenon/Pumpkin-Raider'
         }
       ].map((project, idx) => (
         <div

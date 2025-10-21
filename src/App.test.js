@@ -1,3 +1,12 @@
+// Mock IntersectionObserver for the test environment
+class IntersectionObserver {
+  constructor() {}
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+global.IntersectionObserver = global.IntersectionObserver || IntersectionObserver;
+
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
