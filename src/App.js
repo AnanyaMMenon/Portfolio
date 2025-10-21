@@ -742,7 +742,7 @@ const Portfolio = () => {
 >
   <Mail className="text-purple mx-auto mb-4 group-hover:scale-110 transition-transform" size={32} />
   <h3 className="text-white font-semibold mb-2">Email</h3>
-  <p className="text-muted mb-2 break-all">menonananya@gmail.com</p>
+  <p className="text-muted mb-2 break-all">menonananyam@gmail.com</p>
   <span className="block mt-2 text-purple-300 underline">Contact Me</span>
 </a>
             {/* ...LinkedIn and GitHub cards... */}
