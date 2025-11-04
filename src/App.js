@@ -28,22 +28,67 @@ const [pubView, setPubView] = useState('publications');
   const [activeExpSection, setActiveExpSection] = useState(null);
   const [activeExperience, setActiveExperience] = useState(''); // ADD THIS LINE
 
+// Certifications (from LinkedIn)
 const certifications = [
   {
-    name: "Microsoft Certified: Azure Developer Associate (AZ-204)",
+    name: "AWS Cloud Technical Essentials",
+    issuer: "Amazon Web Services (AWS)",
+    date: "Oct 2025",
+    skills: ["AWS Basics", "Cloud Concepts", "Core Services"],
+    link: "https://www.aws.training/"
+  },
+  {
+    name: "Architecting Solutions on AWS",
+    issuer: "Amazon Web Services (AWS)",
+    date: "Oct 2025",
+    skills: ["Architecture", "VPC", "High Availability", "Security"],
+    link: "https://www.aws.training/"
+  },
+  {
+    name: "Building Data Lakes on AWS",
+    issuer: "Amazon Web Services (AWS)",
+    date: "Oct 2025",
+    skills: ["S3", "Glue", "Athena", "Lake Formation"],
+    link: "https://www.aws.training/"
+  },
+  
+  {
+    name: "Microsoft Certified: Azure Data Engineer Associate",
     issuer: "Microsoft",
-    date: "2024",
-    skills: ["Azure Functions", "App Service", "Key Vault", "Event-Driven"],
+    date: "Feb 2023",
+    skills: ["Azure Data Factory", "Databricks", "Synapse", "SQL"],
     link: "https://learn.microsoft.com/en-us/credentials/"
   },
   {
-    name: "Microsoft Certified: Azure Fundamentals (AZ-900)",
+    name: "Microsoft Certified: DevOps Engineer Expert",
     issuer: "Microsoft",
-    date: "2023",
+    date: "Dec 2021",
+    skills: ["Azure DevOps", "CI/CD", "IaC", "Monitoring"],
+    link: "https://learn.microsoft.com/en-us/credentials/"
+  },
+  {
+    name: "Microsoft Certified: Azure Data Fundamentals",
+    issuer: "Microsoft",
+    date: "Nov 2021",
+    skills: ["Data Concepts", "Azure SQL", "Storage"],
+    link: "https://learn.microsoft.com/en-us/credentials/"
+  },
+  {
+    name: "Microsoft Certified: Azure Developer Associate",
+    issuer: "Microsoft",
+    date: "Oct 2021",
+    skills: ["AZ-204", "App Service", "Functions", "Key Vault"],
+    link: "https://learn.microsoft.com/en-us/credentials/"
+  },
+  {
+    name: "Microsoft Certified: Azure Fundamentals",
+    issuer: "Microsoft",
+    date: "Sep 2021",
     skills: ["Cloud Concepts", "Core Azure Services", "Security"],
     link: "https://learn.microsoft.com/en-us/credentials/"
   }
 ];
+
 
   const titles = [
     'Software Engineer',
