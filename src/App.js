@@ -21,6 +21,29 @@ const Portfolio = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const formRef = useRef();
   const menuRef = useRef(null);
+  // toggle for Publications vs Certifications
+// ✅ JS-safe
+const [pubView, setPubView] = useState('publications');
+
+  const [activeExpSection, setActiveExpSection] = useState(null);
+  const [activeExperience, setActiveExperience] = useState(''); // ADD THIS LINE
+
+const certifications = [
+  {
+    name: "Microsoft Certified: Azure Developer Associate (AZ-204)",
+    issuer: "Microsoft",
+    date: "2024",
+    skills: ["Azure Functions", "App Service", "Key Vault", "Event-Driven"],
+    link: "https://learn.microsoft.com/en-us/credentials/"
+  },
+  {
+    name: "Microsoft Certified: Azure Fundamentals (AZ-900)",
+    issuer: "Microsoft",
+    date: "2023",
+    skills: ["Cloud Concepts", "Core Azure Services", "Security"],
+    link: "https://learn.microsoft.com/en-us/credentials/"
+  }
+];
 
   const titles = [
     'Software Engineer',
@@ -92,8 +115,8 @@ const Portfolio = () => {
     if (loading) return; // Don't start until loading is done
 
     const currentTitle = titles[titleIndex];
-    const typingSpeed = isDeleting ? 50 : 100;
-    const pauseTime = isDeleting ? 500 : 2000;
+    const typingSpeed = isDeleting ? 50 : 50;
+    const pauseTime = isDeleting ? 50 : 1000;
 
     const timer = setTimeout(() => {
       if (!isDeleting) {
@@ -234,7 +257,7 @@ const Portfolio = () => {
     },
     {
       title: 'Senior Cloud Engineer',
-      company: 'LTIMindtree',
+      company: 'LTIMindtree (Chevron)',
       logo: require('./assets/lti.png'),
       location: 'Bangalore, IN',
       period: 'Sept 2021 – July 2023',
@@ -262,7 +285,7 @@ const Portfolio = () => {
       ]
     },
     {
-      title: 'Data Analyst Intern',
+      title: 'Software Engineer Intern',
       company: 'Daily Ninja',
       logo: require('./assets/dn.jpeg'),
       location: 'Bangalore, IN',
@@ -484,7 +507,7 @@ const Portfolio = () => {
   </div>
 </motion.section>
 
-{/* Experience Section - Expandable Cards with Period + Location */}
+{/* Experience Section */}
 <section
   id="experience"
   className={`section bg-black/20 ${
@@ -502,13 +525,24 @@ const Portfolio = () => {
         >
           <button
             onClick={() =>
-              setActiveSection(activeSection === exp.company ? '' : exp.company)
+              setActiveExperience(activeExperience === exp.company ? '' : exp.company)
             }
             className="experience-header"
           >
-            {/* Left: Company + Role */}
+            {/* Left: Company Logo + Role */}
             <div className="title">
-              <Briefcase className="w-6 h-6" style={{ color: 'var(--accent)' }} />
+              <div className="company-logo-container">
+                <img
+                  src={exp.logo}
+                  alt={`${exp.company} logo`}
+                  className="company-logo"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.parentElement.innerHTML =
+                      `<div class="company-logo-fallback">${exp.company?.[0] ?? ''}</div>`;
+                  }}
+                />
+              </div>
               <div>
                 <h3>{exp.company}</h3>
                 <p>{exp.title}</p>
@@ -523,38 +557,35 @@ const Portfolio = () => {
           </button>
 
           {/* Expandable Card */}
-          <motion.div
-            initial={false}
-            animate={{
-              height: activeSection === exp.company ? 'auto' : 0,
-              opacity: activeSection === exp.company ? 1 : 0,
-            }}
-            transition={{ duration: 0.4, ease: 'easeInOut' }}
-            className="overflow-hidden experience-details"
-          >
-            <div className="glass-card">
-              <ul className="list-disc list-inside space-y-2 leading-relaxed">
-                {exp.achievements.map((ach, i) => (
-                  <li key={i}>{ach}</li>
-                ))}
-              </ul>
+          {activeExperience === exp.company && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.4, ease: 'easeInOut' }}
+              className="overflow-hidden experience-details"
+            >
+              <div className="glass-card">
+                <ul className="list-disc list-inside space-y-2 leading-relaxed">
+                  {exp.achievements.map((ach, i) => (
+                    <li key={i}>{ach}</li>
+                  ))}
+                </ul>
 
-              <div className="flex flex-wrap gap-2 mt-5 skills">
-                {exp.skills.map((s, i) => (
-                  <span
-                    key={i}
-                  >
-                    {s}
-                  </span>
-                ))}
+                <div className="flex flex-wrap gap-2 mt-5 skills">
+                  {exp.skills.map((s, i) => (
+                    <span key={i}>{s}</span>
+                  ))}
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          )}
         </div>
       ))}
     </div>
   </div>
 </section>
+
 
 
 
@@ -620,45 +651,111 @@ const Portfolio = () => {
     </div>
   </section>
 
-{/* Publications Section */}
-<section id="publications" className={`section ${visibleSections.has('publications') ? 'section-visible' : 'section-hidden'} px-0 sm:px-2`}>
-  <h2 className="section-title text-3xl sm:text-4xl font-bold text-white mb-8 sm:mb-12 text-center">Publications</h2>
+{/* Publications / Certifications Section */}
+<section
+  id="publications"
+  className={`section ${visibleSections.has('publications') ? 'section-visible' : 'section-hidden'} px-0 sm:px-2`}
+>
+  <h2 className="section-title text-3xl sm:text-4xl font-bold text-white mb-6 sm:mb-8 text-center">
+    {pubView === 'publications' ? 'Publications' : 'Certifications'}
+  </h2>
+
+  {/* Toggle */}
+  <div className="max-w-6xl mx-auto w-full mb-8 flex items-center justify-center gap-3">
+    <button
+      className={`btn-primary ${pubView === 'publications' ? '' : 'opacity-60'}`}
+      onClick={() => setPubView('publications')}
+      type="button"
+      aria-pressed={pubView === 'publications'}
+      style={{ padding: '0.5rem 1rem', borderRadius: '999px' }}
+    >
+      Publications
+    </button>
+    <button
+      className={`btn-secondary ${pubView === 'certifications' ? '' : 'opacity-60'}`}
+      onClick={() => setPubView('certifications')}
+      type="button"
+      aria-pressed={pubView === 'certifications'}
+      style={{ padding: '0.5rem 1rem', borderRadius: '999px' }}
+    >
+      Certifications
+    </button>
+  </div>
+
   <div className="max-w-6xl mx-auto w-full">
-    <div className="space-y-8">
-      <div className="glass-card w-full">
-        <h3 className="text-2xl font-bold text-white mb-2">Flask Based Web App on Diabetes Prediction</h3>
-        <p className="text-light mb-4">
-          Developed a comparative study of different classification algorithms on the Diabetes Dataset and built a Flask-based web app deployed on Heroku. Demonstrated that random forests provide better accuracy (81.17%).
-        </p>
-        <div className="flex flex-wrap gap-3 mb-4">
-          {["Python", "Flask", "Machine Learning", "Random Forest", "Heroku"].map((skill, idx) => (
-            <span
-              key={idx}
-              className="bg-purple-800/80 text-purple-100 px-5 py-2 rounded-full text-base font-semibold shadow-md"
-              style={{
-                fontSize: '1.15rem',
-                letterSpacing: '0.01em',
-                display: 'inline-block',
-              }}
-            >
-              {skill}
-            </span>
-          ))}
+    {pubView === 'publications' ? (
+      // ===== Publications View =====
+      <div className="space-y-8">
+        <div className="glass-card w-full">
+          <h3 className="text-2xl font-bold text-white mb-2">
+            Flask Based Web App on Diabetes Prediction
+          </h3>
+          <p className="text-light mb-4">
+            Developed a comparative study of different classification algorithms on the Diabetes
+            Dataset and built a Flask-based web app deployed on Heroku. Demonstrated that random
+            forests provide better accuracy (81.17%).
+          </p>
+          <div className="flex flex-wrap gap-3 mb-4">
+            {['Python', 'Flask', 'Machine Learning', 'Random Forest', 'Heroku'].map((skill, idx) => (
+              <span
+                key={idx}
+                className="bg-purple-800/80 text-purple-100 px-5 py-2 rounded-full text-base font-semibold shadow-md"
+                style={{ fontSize: '1.05rem', letterSpacing: '0.01em', display: 'inline-block' }}
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+          <a
+            href="https://link.springer.com/epdf/10.1007/978-981-16-6407-6_67?sharing_token=DwUKby1AiSeesSk0SQven_e4RwlQNchNByi7wbcMAY6qyTQEIZy7YhTdTpcA7llm7CLJWtfI5qeMB_dGoJJDqoqzMrQYZvUHLrkkcy3f-H2gIkfno4L2Az_ix1u_lkSzkRgwBjIcnVSQKC0reuL6ivfJ9tCgH5xqOS-6ZoHY_Bk%3D"
+            className="inline-flex items-center gap-2 text-white hover:text-purple-300 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <ExternalLink size={16} />
+            View Publication
+          </a>
         </div>
-        <a
-          href="https://link.springer.com/epdf/10.1007/978-981-16-6407-6_67?sharing_token=DwUKby1AiSeesSk0SQven_e4RwlQNchNByi7wbcMAY6qyTQEIZy7YhTdTpcA7llm7CLJWtfI5qeMB_dGoJJDqoqzMrQYZvUHLrkkcy3f-H2gIkfno4L2Az_ix1u_lkSzkRgwBjIcnVSQKC0reuL6ivfJ9tCgH5xqOS-6ZoHY_Bk%3D"
-          className="inline-flex items-center gap-2 text-white hover:text-purple-300 transition-colors"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <ExternalLink size={16} />
-          View Publication
-        </a>
+        {/* Add more publication cards as needed */}
       </div>
-      {/* Add more publication cards below as needed */}
-    </div>
+    ) : (
+      // ===== Certifications View =====
+      <div className="grid md:grid-cols-2 gap-6">
+        {certifications.map((c, i) => (
+          <div key={i} className="glass-card w-full items-start">
+            <h3 className="text-xl font-bold text-white mb-1">{c.name}</h3>
+            <p className="text-muted mb-2">
+              {c.issuer} • {c.date}
+            </p>
+            <div className="flex flex-wrap gap-2 mb-4">
+              {c.skills.map((s, idx) => (
+                <span
+                  key={idx}
+                  className="bg-purple-800/80 text-purple-100 px-4 py-1.5 rounded-full text-sm font-semibold shadow-md"
+                  style={{ letterSpacing: '0.01em', display: 'inline-block' }}
+                >
+                  {s}
+                </span>
+              ))}
+            </div>
+            {c.link && (
+              <a
+                href={c.link}
+                className="inline-flex items-center gap-2 text-white hover:text-purple-300 transition-colors text-sm"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ExternalLink size={14} />
+                Verify / Learn more
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    )}
   </div>
 </section>
+
 
       {/* Projects Section */}
       <section id="projects" className={`section ${visibleSections.has('projects') ? 'section-visible' : 'section-hidden'} px-0 sm:px-2`}>
