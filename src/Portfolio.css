@@ -14,6 +14,19 @@ body {
   font-size: 25px;
 }
 
+/* Black + Blue theme variables */
+:root{
+  --bg-dark-1: #000000;
+  --bg-dark-2: #0a0e1a;
+  --glass-bg: rgba(10, 20, 40, 0.7);
+  --glass-border: rgba(30, 144, 255, 0.15);
+  --accent: #1e90ff;       /* dodger blue */
+  --accent-200: #4da6ff;   /* lighter blue */
+  --accent-hover: #0066cc; /* darker blue for hover */
+  --muted: #8ba3c7;
+  --text-light: #e6f3ff;
+}
+
 /* Section animation styles */
 .section-hidden {
   opacity: 0;
@@ -49,9 +62,14 @@ body {
 
 /* Main container with gradient background */
 .portfolio-container {
-  background: linear-gradient(135deg, #0f172a 0%, #581c87 30%, #7c3aed 50%, #581c87 70%, #0f172a 100%);
+  background: linear-gradient(135deg, #000000 0%, #0a0e1a 30%, #001a33 50%, #0a0e1a 70%, #000000 100%) !important;
   min-height: 100vh;
   color: white;
+}
+
+/* Page background - black to dark blue gradient */
+.portfolio-container{
+  background: linear-gradient(135deg, #000000 0%, #0a0e1a 50%, #001a33 100%) !important;
 }
 
 /* Navigation styles */
@@ -79,7 +97,7 @@ body {
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
-  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  background: linear-gradient(135deg, #1e90ff 0%, #00bfff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -102,9 +120,37 @@ body {
 }
 
 .nav-link:hover, .nav-link.active {
-  color: #a855f7;
-  border-bottom: 2px solid #a855f7;
+  color: #1e90ff;
+  border-bottom: 2px solid #1e90ff;
   padding-bottom: 2px;
+}
+
+/* Navbar overrides */
+nav[style]{
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.95), rgba(10, 14, 26, 0.95)) !important;
+  border-bottom-color: rgba(30, 144, 255, 0.2) !important;
+  box-shadow: 0 2px 16px 0 rgba(30, 144, 255, 0.2) !important;
+}
+
+/* Nav links */
+.nav-link.active, 
+nav button.bg-purple-700,
+nav button[style*="bg-purple"] {
+  background: rgba(30, 144, 255, 0.2) !important;
+  color: white !important;
+}
+
+nav button:hover {
+  background: rgba(30, 144, 255, 0.15) !important;
+}
+
+/* Logo gradient */
+.logo,
+.bg-gradient-to-r {
+  background: linear-gradient(135deg, #1e90ff 0%, #00bfff 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
 }
 
 /* Hero section */
@@ -135,7 +181,7 @@ body {
   color: white;
   font-size: 7rem;
   font-weight: bold;
-  box-shadow: 0 16px 32px rgba(139, 92, 246, 0.25);
+  box-shadow: 0 16px 32px rgba(30, 144, 255, 0.25);
   text-align: center;
   line-height: 1;
   height: 16rem;
@@ -151,15 +197,16 @@ body {
 }
 
 .hero-name-highlight {
-  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  background: linear-gradient(135deg, #1e90ff 0%, #00bfff 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
 }
 
+/* Hero title color */
 .hero-title {
+  color: #4da6ff !important;
   font-size: 5rem;
-  color: #c084fc;
   margin-bottom: 3rem;
 }
 
@@ -183,8 +230,8 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: #8b5cf6;
-  color: white;
+  background: linear-gradient(90deg, #1e90ff, #0066cc) !important;
+  color: white !important;
   padding: 0.75rem 1.5rem;
   border-radius: 50px;
   text-decoration: none;
@@ -192,20 +239,22 @@ body {
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
+  box-shadow: 0 6px 18px rgba(30, 144, 255, 0.3);
+  border: 1px solid rgba(30, 144, 255, 0.3);
 }
 
 .btn-primary:hover {
-  background: #7c3aed;
+  background: linear-gradient(90deg, #0066cc, #004c99) !important;
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 18px 40px rgba(30, 144, 255, 0.5);
 }
 
 .btn-secondary {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  border: 2px solid #a855f7;
-  color: #a855f7;
+  border: 2px solid #1e90ff !important;
+  color: #1e90ff !important;
   background: transparent;
   padding: 0.75rem 1.5rem;
   border-radius: 50px;
@@ -216,8 +265,8 @@ body {
 }
 
 .btn-secondary:hover {
-  background: #a855f7;
-  color: white;
+  background: #1e90ff !important;
+  color: white !important;
   transform: translateY(-2px);
 }
 
@@ -234,8 +283,19 @@ body {
 }
 
 .social-link:hover {
-  color: #a855f7;
+  color: #1e90ff !important;
   transform: scale(1.1);
+}
+
+/* Social links & icons */
+.social-link svg, .glass-card .group svg {
+  color: var(--accent) !important;
+}
+
+/* About section icon colors */
+.text-purple.mb-4,
+#about svg {
+  color: #1e90ff !important;
 }
 
 /* Section styles */
@@ -257,11 +317,17 @@ body {
   margin-bottom: 3rem;
 }
 
+/* Section titles */
+.section-title{
+  color: var(--accent-200);
+  text-shadow: 0 2px 12px rgba(30, 144, 255, 0.6);
+}
+
 /* Glass card effect */
 .glass-card {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(10, 20, 40, 0.7) !important;
   backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(30, 144, 255, 0.15) !important;
   border-radius: 1rem;
   padding: 2.5rem 2rem;
   transition: all 0.3s ease;
@@ -273,12 +339,14 @@ body {
   align-items: center;
   width: 100%;
   box-sizing: border-box;
+  box-shadow: 0 10px 30px rgba(0, 50, 100, 0.5) !important;
+  color: var(--text-light);
 }
 
 .glass-card:hover {
-  border-color: rgba(168, 85, 247, 0.3);
+  border-color: rgba(30, 144, 255, 0.4) !important;
   transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 100, 200, 0.4) !important;
 }
 
 /* Add this rule to prevent email wrapping in the card */
@@ -290,81 +358,78 @@ body {
 
 /* Contact form card style */
 .contact-form-card {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(5, 15, 30, 0.8) !important;
   backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(30, 144, 255, 0.2) !important;
   border-radius: 1rem;
   padding: 5rem 2rem;
-  max-width: 650px; /* Adjusted width for better responsiveness */
-  margin: 0 auto;         /* Center horizontally */
+  max-width: 650px;
+  margin: 0 auto;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-left: auto;      /* Center horizontally */
-  margin-right: auto;     /* Center horizontally */
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Black + Blue theme variables */
-:root{
-  --bg-dark-1: #030617;
-  --bg-dark-2: #001328;
-  --glass-bg: rgba(2,6,20,0.66);
-  --glass-border: rgba(30,144,255,0.12);
-  --accent: #0ea5ff;       /* bright blue */
-  --accent-200: #60a5fa;   /* lighter blue */
-  --muted: #9fb7d9;
-  --text-light: #e6f3ff;
+/* Contact cards */
+.contact-form-card, .section-dark .glass-card, .section-dark .contact-form-card{
+  background: rgba(5, 15, 30, 0.8) !important;
+  border: 1px solid rgba(30, 144, 255, 0.2) !important;
 }
 
-/* Page background (override tailwind gradient) */
-.portfolio-container{
-  background: linear-gradient(135deg, var(--bg-dark-1) 0%, var(--bg-dark-2) 100%) !important;
+/* Contact form inputs */
+input, textarea {
+  background: rgba(10, 20, 40, 0.8) !important;
+  color: white !important;
+  border: 1px solid rgba(30, 144, 255, 0.2) !important;
 }
 
-/* Glass cards / panels */
-.glass-card{
-  background: var(--glass-bg) !important;
-  border: 1px solid var(--glass-border) !important;
-  box-shadow: 0 10px 30px rgba(0,20,50,0.45) !important;
-  color: var(--text-light);
+input:focus, textarea:focus {
+  border-color: rgba(30, 144, 255, 0.5) !important;
+  outline: none;
 }
 
-/* Section titles */
-.section-title{
-  color: var(--accent-200);
-  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+/* Mobile menu dropdown */
+div[style*="rgba(24,18,43"] {
+  background: rgba(10, 14, 26, 0.98) !important;
+  border: 1px solid rgba(30, 144, 255, 0.25) !important;
 }
 
-/* Accent text utilities (replace existing 'text-purple' etc.) */
+/* Mobile menu items */
+.hover\\:bg-purple-800:hover,
+button[class*="bg-purple-900"] {
+  background: rgba(30, 144, 255, 0.2) !important;
+}
+
+/* Accent text utilities */
 .text-purple, .text-purple-300, .text-purple-400 {
   color: var(--accent) !important;
 }
-.text-purple-300 { color: var(--accent-200) !important; }
-.text-muted { color: var(--muted) !important; }
-
-/* Primary buttons */
-.btn-primary{
-  background: linear-gradient(90deg, rgba(14,165,255,0.12), rgba(14,165,255,0.06)) !important;
-  color: var(--text-light) !important;
-  border: 1px solid rgba(14,165,255,0.18);
-  box-shadow: 0 6px 18px rgba(14,165,255,0.06);
+.text-purple-300 { 
+  color: var(--accent-200) !important; 
 }
-.btn-primary:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 18px 40px rgba(14,165,255,0.12);
+.text-muted { 
+  color: var(--muted) !important; 
 }
 
-/* Navbar overrides */
-nav[style]{
-  background: linear-gradient(180deg, rgba(0,8,20,0.92), rgba(0,18,40,0.92)) !important;
-  border-bottom-color: rgba(14,165,255,0.08) !important;
+/* Cards tag / skill pill styling */
+.glass-card span,
+#skills span,
+.experience-details .skills span {
+  background: rgba(10, 30, 60, 0.7) !important;
+  border: 1px solid rgba(30, 144, 255, 0.2) !important;
+  color: var(--accent-200) !important;
 }
 
-/* Social links & icons */
-.social-link svg, .glass-card .group svg {
-  color: var(--accent) !important;
+/* Skills section pill colors */
+#skills span {
+  background: rgba(10, 30, 60, 0.7) !important;
+  border: 1px solid rgba(30, 144, 255, 0.2) !important;
+  color: #4da6ff !important;
+  font-weight: 500;
 }
 
 /* Project image box (consistent sizing) */
@@ -375,7 +440,7 @@ nav[style]{
   align-items: center;
   justify-content: center;
   margin-top: 0.5rem;
-  background: #ffffff; /* keep white area for screenshots */
+  background: #ffffff;
 }
 .project-image{
   max-width: 100%;
@@ -385,23 +450,16 @@ nav[style]{
   filter: none;
 }
 
-/* Cards tag / skill pill styling */
-.glass-card span {
-  background: rgba(6,30,60,0.6) !important;
-  border: 1px solid rgba(14,165,255,0.08);
-  color: var(--accent-200) !important;
-}
-
-/* Contact cards */
-.contact-form-card, .section-dark .glass-card, .section-dark .contact-form-card{
-  background: rgba(1,10,25,0.7) !important;
-  border: 1px solid rgba(14,165,255,0.08) !important;
-}
-
 /* Footer */
 footer{
   background: transparent;
   color: var(--muted);
+  border-top: 1px solid rgba(30, 144, 255, 0.1) !important;
+}
+
+/* Company logo fallback */
+.company-logo-fallback {
+  background: linear-gradient(135deg, #1e90ff 0%, #00bfff 100%) !important;
 }
 
 /* Ensure horizontal scrollbar styling is subtle */
@@ -409,7 +467,7 @@ footer{
   height: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(14,165,255,0.12);
+  background: rgba(30, 144, 255, 0.2);
   border-radius: 999px;
 }
 
@@ -591,7 +649,7 @@ footer{
 
 /* Utility classes */
 .text-white { color: white; }
-.text-purple { color: #a855f7; }
+.text-purple { color: #1e90ff; }
 .text-light { color: rgba(255, 255, 255, 0.8); }
 .text-muted { color: rgba(255, 255, 255, 0.6); }
 .mb-4 { margin-bottom: 1rem; }
@@ -613,19 +671,15 @@ footer{
 
 /* --- Enlarged Technical Skills Section --- */
 #skills .glass-card h3 {
-  font-size: 1.5rem; /* Match Experience section subheading (text-xl) */
+  font-size: 1.5rem;
 }
 
 #skills .text-sm {
-  font-size: 1rem; /* Match Experience section skill/cert text (text-sm) */
-}
-
-#skills span {
-  font-weight: 500;
+  font-size: 1rem;
 }
 
 #skills .glass-card > div {
-  line-height: 1.75; /* Match Experience section spacing */
+  line-height: 1.75;
 }
 
 /* Company logo styles */
@@ -665,7 +719,7 @@ footer{
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  background: linear-gradient(135deg, #1e90ff 0%, #00bfff 100%);
   color: white;
   font-weight: bold;
   font-size: 1.5rem;
@@ -684,29 +738,58 @@ footer{
   }
 }
 
-/* === EXPERIENCE SECTION — Consistent Typography === */
+/* === EXPERIENCE SECTION – Consistent Typography & Glass Effect === */
 #experience {
   width: 100%;
   padding: 5rem 1rem;
 }
 
-/* Header */
+/* Section title - matches other sections */
+#experience h2 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--accent-200);
+  text-align: center;
+  margin-bottom: 3rem;
+  text-shadow: 0 2px 12px rgba(30, 144, 255, 0.6);
+}
+
+/* Experience card wrapper with animation */
+.experience-card-wrapper {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.experience-card-wrapper:nth-child(1) { animation-delay: 0.1s; }
+.experience-card-wrapper:nth-child(2) { animation-delay: 0.2s; }
+.experience-card-wrapper:nth-child(3) { animation-delay: 0.3s; }
+.experience-card-wrapper:nth-child(4) { animation-delay: 0.4s; }
+
+/* Glass card header - clickable */
 .experience-header {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  background: rgba(14,165,255,0.06);
-  border-radius: 12px;
-  padding: 1.25rem 1.5rem;
-  color: #e6f3ff;
-  font-weight: 600;
-  border: 1px solid rgba(14,165,255,0.15);
+  background: rgba(10, 20, 40, 0.7) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border: 1px solid rgba(30, 144, 255, 0.15) !important;
+  border-radius: 1rem;
+  padding: 2rem 1.5rem;
+  color: var(--text-light);
   cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 50, 100, 0.5) !important;
+  text-align: left;
 }
+
 .experience-header:hover {
-  background: rgba(14,165,255,0.12);
+  border-color: rgba(30, 144, 255, 0.4) !important;
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 100, 200, 0.4) !important;
+  background: rgba(10, 20, 40, 0.85) !important;
 }
 
 .experience-header .title {
@@ -715,73 +798,95 @@ footer{
   gap: 1rem;
 }
 
+/* Company name - matches section headings */
 .experience-header h3 {
-  font-size: 1.125rem; /* ~18px */
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 0.25rem;
 }
+
+/* Job title - matches card subheadings */
 .experience-header p {
-  font-size: 0.95rem; /* ~15px */
+  font-size: 1.125rem;
+  color: var(--accent);
 }
 
 /* Period + Location */
 .experience-header .period {
-  color: #9fb7d9;
-  font-size: 0.9rem;
+  color: var(--muted);
+  font-size: 1rem;
 }
+
 .experience-header .location {
-  color: #60a5fa;
-  font-size: 0.85rem;
+  color: var(--accent-200);
+  font-size: 0.95rem;
   font-weight: 500;
   margin-top: 0.25rem;
 }
 
-/* Expanded content */
+/* Expanded content with glass effect */
 .experience-details .glass-card {
   margin-top: 1rem;
   border-radius: 1rem;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(14,165,255,0.15);
-  box-shadow: 0 10px 25px rgba(0,20,50,0.35);
-  padding: 1.75rem;
+  background: rgba(10, 20, 40, 0.7) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border: 1px solid rgba(30, 144, 255, 0.15) !important;
+  box-shadow: 0 10px 30px rgba(0, 50, 100, 0.5) !important;
+  padding: 2rem;
 }
 
+/* Achievement list - matches paragraph text */
 .experience-details ul {
   list-style: disc;
   padding-left: 1.5rem;
   color: rgba(255,255,255,0.9);
-  font-size: 0.95rem; /* consistent with other text sections */
+  font-size: 1rem;
   line-height: 1.6;
 }
 
 .experience-details li {
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.75rem;
 }
 
+/* Skills tags - consistent with other sections */
 .experience-details .skills span {
-  background: rgba(6,30,60,0.65);
-  border: 1px solid rgba(14,165,255,0.15);
-  color: #60a5fa;
-  padding: 0.4rem 0.8rem;
+  background: rgba(10, 30, 60, 0.7) !important;
+  border: 1px solid rgba(30, 144, 255, 0.2) !important;
+  color: var(--accent-200) !important;
+  padding: 0.5rem 1rem;
   border-radius: 999px;
   font-weight: 500;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  #experience h2 {
+    font-size: 2rem;
+  }
+  
   .experience-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.5rem;
+    gap: 0.75rem;
+    padding: 1.5rem 1rem;
   }
+  
   .experience-header h3 {
+    font-size: 1.25rem;
+  }
+  
+  .experience-header p {
     font-size: 1rem;
   }
-  .experience-header p {
-    font-size: 0.9rem;
-  }
+  
   .experience-details ul {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+  }
+  
+  .experience-details .glass-card {
+    padding: 1.5rem 1rem;
   }
 }
-

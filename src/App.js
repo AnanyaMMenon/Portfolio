@@ -7,6 +7,7 @@ import { Briefcase } from "lucide-react";
 
 import 'aos/dist/aos.css';
 import './Portfolio.css'; // Import your CSS file
+
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -15,8 +16,18 @@ const Portfolio = () => {
   const [loading, setLoading] = useState(true);
   const [typedName, setTypedName] = useState('');
   const [visibleSections, setVisibleSections] = useState(new Set(['home']));
+  const [typedTitle, setTypedTitle] = useState('');
+  const [titleIndex, setTitleIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
   const formRef = useRef();
   const menuRef = useRef(null);
+
+  const titles = [
+    'Software Engineer',
+    'Full Stack Developer',
+    'Cloud Developer',
+    'Mobile App Developer'
+  ];
 
   // Set zoom to 100% on page load
   useEffect(() => {
@@ -75,6 +86,38 @@ const Portfolio = () => {
       return () => clearInterval(typing);
     }
   }, [loading]);
+
+  // Typewriter effect for rotating titles
+  useEffect(() => {
+    if (loading) return; // Don't start until loading is done
+
+    const currentTitle = titles[titleIndex];
+    const typingSpeed = isDeleting ? 50 : 100;
+    const pauseTime = isDeleting ? 500 : 2000;
+
+    const timer = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing forward
+        if (typedTitle.length < currentTitle.length) {
+          setTypedTitle(currentTitle.slice(0, typedTitle.length + 1));
+        } else {
+          // Finished typing, pause then start deleting
+          setTimeout(() => setIsDeleting(true), pauseTime);
+        }
+      } else {
+        // Deleting backward
+        if (typedTitle.length > 0) {
+          setTypedTitle(currentTitle.slice(0, typedTitle.length - 1));
+        } else {
+          // Finished deleting, move to next title
+          setIsDeleting(false);
+          setTitleIndex((prev) => (prev + 1) % titles.length);
+        }
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timer);
+  }, [typedTitle, isDeleting, titleIndex, titles, loading]);
 
   // Scroll spy: highlight nav link as section is in view
   useEffect(() => {
@@ -259,7 +302,7 @@ const Portfolio = () => {
   }}
 >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-          <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
             Ananya Menon
           </div>
           <div className="hidden md:flex gap-8">
@@ -344,11 +387,12 @@ const Portfolio = () => {
             <h1 className="hero-name" style={{ fontSize: '5rem', marginBottom: '1rem' }}>
           Ananya <span className="hero-name-highlight">Menon</span>
             </h1>
-            <p className="hero-title" style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>
-          Software Engineer & Cloud Developer
+            <p className="hero-title" style={{ fontSize: '2rem', marginBottom: '1.5rem', minHeight: '3rem' }}>
+              <span className="typewriter-text">{typedTitle}</span>
+              <span className="typewriter-cursor">|</span>
             </p>
             <p className="hero-description" style={{ fontSize: '1.5rem', marginBottom: '2.5rem' }}>
-            Full-stack developer specializing in .NET and Azure, with a Master’s degree from Illinois Tech.
+            Full-stack developer specializing in .NET and Azure, with a Master's degree from Illinois Tech.
 
             </p>
             
@@ -400,7 +444,7 @@ const Portfolio = () => {
   <div className="grid md:grid-cols-2 gap-12 items-center">
     <div>
       <p className="text-light mb-6">
-    I’m a full-stack developer with 3+ years of professional experience at LTIMindtree (Chevron), building scalable apps using .NET and Azure. During my Master’s in Computer Science at Illinois Tech, I interned at CDK Global, where I honed my skills working on real-world projects.<br /><br />
+    I'm a full-stack developer with 3+ years of professional experience at LTIMindtree (Chevron), building scalable apps using .NET and Azure. During my Master's in Computer Science at Illinois Tech, I interned at CDK Global, where I honed my skills working on real-world projects.<br /><br />
   Powered by caffeine and questionable Wi-Fi.<br /><br />
   If it scales and doesn't crash, that's a win.
       </p>
@@ -439,6 +483,7 @@ const Portfolio = () => {
     </div>
   </div>
 </motion.section>
+
 {/* Experience Section - Expandable Cards with Period + Location */}
 <section
   id="experience"
@@ -451,43 +496,29 @@ const Portfolio = () => {
 
     <div className="flex flex-col gap-6">
       {experiences.map((exp, idx) => (
-        <motion.div
+        <div
           key={idx}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: idx * 0.15 }}
-          viewport={{ once: true, amount: 0.2 }}
+          className="experience-card-wrapper"
         >
           <button
             onClick={() =>
               setActiveSection(activeSection === exp.company ? '' : exp.company)
             }
-            className="w-full text-left flex justify-between items-start bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.08)] backdrop-blur-md rounded-xl px-6 py-5 text-white hover:border-purple-400/40 hover:bg-[rgba(14,165,255,0.08)] transition-all duration-300"
+            className="experience-header"
           >
             {/* Left: Company + Role */}
-            <div className="flex items-center gap-4">
-              <Briefcase className="text-purple-400 w-6 h-6" />
+            <div className="title">
+              <Briefcase className="w-6 h-6" style={{ color: 'var(--accent)' }} />
               <div>
-                <h3 className="text-xl font-semibold">{exp.company}</h3>
-                <p className="text-sm text-purple-300">{exp.title}</p>
+                <h3>{exp.company}</h3>
+                <p>{exp.title}</p>
               </div>
             </div>
 
-            {/* Right: Period + Location + Chevron */}
-            <div className="flex flex-col items-end text-sm text-purple-200">
-              <p className="period font-medium">{exp.period}</p>
-              <p className="location text-purple-400 text-xs sm:text-sm mt-1">
-                {exp.location}
-              </p>
-              {/* <motion.span
-                animate={{
-                  rotate: activeSection === exp.company ? 180 : 0,
-                }}
-                transition={{ duration: 0.3 }}
-                className="mt-2 text-purple-300"
-              >
-                ▼
-              </motion.span> */}
+            {/* Right: Period + Location */}
+            <div className="flex flex-col items-end">
+              <p className="period">{exp.period}</p>
+              <p className="location">{exp.location}</p>
             </div>
           </button>
 
@@ -499,20 +530,19 @@ const Portfolio = () => {
               opacity: activeSection === exp.company ? 1 : 0,
             }}
             transition={{ duration: 0.4, ease: 'easeInOut' }}
-            className="overflow-hidden"
+            className="overflow-hidden experience-details"
           >
-            <div className="glass-card mt-3 border border-[rgba(14,165,255,0.2)] bg-[rgba(255,255,255,0.05)] p-6 rounded-xl shadow-lg">
-              <ul className="list-disc list-inside space-y-2 text-[1rem] text-gray-200 leading-relaxed">
+            <div className="glass-card">
+              <ul className="list-disc list-inside space-y-2 leading-relaxed">
                 {exp.achievements.map((ach, i) => (
                   <li key={i}>{ach}</li>
                 ))}
               </ul>
 
-              <div className="flex flex-wrap gap-2 mt-5">
+              <div className="flex flex-wrap gap-2 mt-5 skills">
                 {exp.skills.map((s, i) => (
                   <span
                     key={i}
-                    className="bg-purple-900/40 border border-purple-400/20 text-purple-200 px-3 py-1 rounded-full text-sm font-medium"
                   >
                     {s}
                   </span>
@@ -520,7 +550,7 @@ const Portfolio = () => {
               </div>
             </div>
           </motion.div>
-        </motion.div>
+        </div>
       ))}
     </div>
   </div>
@@ -652,7 +682,7 @@ const Portfolio = () => {
         },
         {
           title: 'ParkedIn',
-          description: 'ParkedIn helps people find parking in Chicago, pay for spots, and manage reservations without circling the block for hours. 🚗 It’s built with Flask blueprints for clean structure, using routes for users, lots, payments, reservations, and vehicles. It handles login, CRUD operations, and database management like a pro valet—so you can focus on getting parked, not parking.',
+          description: 'ParkedIn helps people find parking in Chicago, pay for spots, and manage reservations without circling the block for hours. 🚗 It\'s built with Flask blueprints for clean structure, using routes for users, lots, payments, reservations, and vehicles. It handles login, CRUD operations, and database management like a pro valet—so you can focus on getting parked, not parking.',
           skills: ['Python', 'SQL', 'Flask'],
           logo: require('./assets/paking.png'),
           link: 'https://github.com/AnanyaMMenon/ParkedIn/tree/main'
