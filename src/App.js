@@ -3,6 +3,8 @@ import emailjs from 'emailjs-com';
 import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Download, Menu, X, Code, Database, Cloud, Award } from 'lucide-react';
 import { motion } from 'framer-motion';
 import AOS from 'aos';
+import { Briefcase } from "lucide-react";
+
 import 'aos/dist/aos.css';
 import './Portfolio.css'; // Import your CSS file
 const Portfolio = () => {
@@ -437,76 +439,94 @@ const Portfolio = () => {
     </div>
   </div>
 </motion.section>
+{/* Experience Section - Expandable Cards with Period + Location */}
+<section
+  id="experience"
+  className={`section bg-black/20 ${
+    visibleSections.has('experience') ? 'section-visible' : 'section-hidden'
+  } px-4 sm:px-6`}
+>
+  <div className="max-w-5xl mx-auto w-full">
+    <h2 className="text-4xl font-bold text-white mb-12 text-center">Experience</h2>
 
-      {/* Experience Section */}
-      <section id="experience" className={`section bg-black/20 ${visibleSections.has('experience') ? 'section-visible' : 'section-hidden'} px-0 sm:px-2`}>
-    <div className="max-w-6xl mx-auto w-full">
-      <h2 className="text-4xl font-bold text-white mb-12 text-center">Experience</h2>
-      <div className="space-y-8">
-        {experiences.map((exp, index) => (
-          <motion.div
-            className="glass-card w-full"
-            whileHover={{ scale: 1.04, boxShadow: "0 20px 40px rgba(168,85,247,0.25)" }}
-            data-aos="fade-up"
-            data-aos-delay={index * 100}
+    <div className="flex flex-col gap-6">
+      {experiences.map((exp, idx) => (
+        <motion.div
+          key={idx}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: idx * 0.15 }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <button
+            onClick={() =>
+              setActiveSection(activeSection === exp.company ? '' : exp.company)
+            }
+            className="w-full text-left flex justify-between items-start bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.08)] backdrop-blur-md rounded-xl px-6 py-5 text-white hover:border-purple-400/40 hover:bg-[rgba(14,165,255,0.08)] transition-all duration-300"
           >
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 w-full">
-              {/* Left: Logo, Company, Location */}
-              <div className="flex items-center gap-4 mb-4 md:mb-0 text-left">
-                <div className="company-logo-container w-14 h-14 flex-shrink-0 mr-3">
-                  <img 
-                    src={exp.logo}
-                    alt={`${exp.company} logo`}
-                    className="company-logo w-14 h-14 object-contain rounded bg-white"
-                    onError={e => { e.target.style.display = 'none'; }}
-                  />
-                  <div className="company-logo-fallback" style={{ display: 'none' }}>
-                    <span className="text-2xl font-bold text-purple-400">{exp.company.charAt(0)}</span>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-1">{exp.title}</h3>
-                  <p className="text-purple-300 text-lg mb-0">{exp.company}</p>
-                  <p className="text-muted text-base">{exp.location}</p>
-                </div>
+            {/* Left: Company + Role */}
+            <div className="flex items-center gap-4">
+              <Briefcase className="text-purple-400 w-6 h-6" />
+              <div>
+                <h3 className="text-xl font-semibold">{exp.company}</h3>
+                <p className="text-sm text-purple-300">{exp.title}</p>
               </div>
-              {/* Right: Date */}
-              <span className="text-white/60 text-sm md:text-base md:text-right w-full md:w-auto">{exp.period}</span>
             </div>
-            <ul className="space-y-2">
-  {exp.achievements.map((achievement, i) => (
-    <li
-      key={i}
-      className="text-white/80 flex gap-2 items-baseline leading-snug"
-      style={{ wordBreak: 'break-word' }}
-    >
-      <span className="text-purple-400 text-lg flex-shrink-0">•</span>
-      <span className="flex-1">{achievement}</span>
-    </li>
-  ))}
-</ul>
-            {exp.skills && exp.skills.length > 0 && (
-  <div className="flex flex-wrap gap-3 mt-6">
-    {exp.skills.map((skill, idx) => (
-      <span
-        key={idx}
-        className="bg-purple-800/80 text-purple-100 px-5 py-2 rounded-full text-base font-semibold shadow-md"
-        style={{
-          fontSize: '1.15rem',
-          letterSpacing: '0.01em',
-          display: 'inline-block',
-        }}
-      >
-        {skill}
-      </span>
-    ))}
-  </div>
-)}
+
+            {/* Right: Period + Location + Chevron */}
+            <div className="flex flex-col items-end text-sm text-purple-200">
+              <p className="period font-medium">{exp.period}</p>
+              <p className="location text-purple-400 text-xs sm:text-sm mt-1">
+                {exp.location}
+              </p>
+              {/* <motion.span
+                animate={{
+                  rotate: activeSection === exp.company ? 180 : 0,
+                }}
+                transition={{ duration: 0.3 }}
+                className="mt-2 text-purple-300"
+              >
+                ▼
+              </motion.span> */}
+            </div>
+          </button>
+
+          {/* Expandable Card */}
+          <motion.div
+            initial={false}
+            animate={{
+              height: activeSection === exp.company ? 'auto' : 0,
+              opacity: activeSection === exp.company ? 1 : 0,
+            }}
+            transition={{ duration: 0.4, ease: 'easeInOut' }}
+            className="overflow-hidden"
+          >
+            <div className="glass-card mt-3 border border-[rgba(14,165,255,0.2)] bg-[rgba(255,255,255,0.05)] p-6 rounded-xl shadow-lg">
+              <ul className="list-disc list-inside space-y-2 text-[1rem] text-gray-200 leading-relaxed">
+                {exp.achievements.map((ach, i) => (
+                  <li key={i}>{ach}</li>
+                ))}
+              </ul>
+
+              <div className="flex flex-wrap gap-2 mt-5">
+                {exp.skills.map((s, i) => (
+                  <span
+                    key={i}
+                    className="bg-purple-900/40 border border-purple-400/20 text-purple-200 px-3 py-1 rounded-full text-sm font-medium"
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
       ))}
     </div>
   </div>
 </section>
+
+
 
       {/* Skills Section */}
       <section id="skills" className={`section ${visibleSections.has('skills') ? 'section-visible' : 'section-hidden'} px-0 sm:px-2`}>
@@ -627,35 +647,35 @@ const Portfolio = () => {
           title: 'F1 App',
           description: 'This is an F1 Live Hub app, think of it as the Red Bull Racing of mobile dev. It pulls real-time data from the Ergast API and uses OpenAI to sound smart about driver backstories. http handles networking, provider keeps the state cool, and shared_preferences remembers your faves like a trusty pit crew. With tests to avoid mid-race crashes and sleek tabs for Drivers, Races, and Favorites, it keeps you on track—whether you\'re team Hamilton or Verstappen.',
           skills: ['Dart', 'Flutter', 'C++'],
-          logo: require('./assets/f1_logo.png'),
+          logo: require('./assets/F.png'),
           link: 'https://github.com/AnanyaMMenon/F1--App/blob/master/README.md'
         },
         {
           title: 'ParkedIn',
           description: 'ParkedIn helps people find parking in Chicago, pay for spots, and manage reservations without circling the block for hours. 🚗 It’s built with Flask blueprints for clean structure, using routes for users, lots, payments, reservations, and vehicles. It handles login, CRUD operations, and database management like a pro valet—so you can focus on getting parked, not parking.',
           skills: ['Python', 'SQL', 'Flask'],
-          logo: require('./assets/parking.png'),
+          logo: require('./assets/paking.png'),
           link: 'https://github.com/AnanyaMMenon/ParkedIn/tree/main'
         },
         {
           title: 'Battleship',
           description: 'Battleship is a Flutter + Dart app where you can log in, matchmake, and sink ships on a smart 5x5 grid, playing against humans or AI. It uses a REST API for game and auth management, http for calls, provider for state, and shared_preferences for local storage—bringing turn-based naval battles with hits, misses, and sunk ships straight to your phone, minus the sea spray. 🚢💥',
           skills: ['Dart', 'Flutter', 'REST-API'],
-          logo: require('./assets/battleship.png'),
+          logo: require('./assets/BatleshipGame.png'),
           link: 'https://github.com/AnanyaMMenon/Battleship-'
         },
         {
           title: 'Snackcident',
           description: 'Ever had a snackcident? Snackcident lets you track every bite and calculate your BMI to keep your health in check. Built with Flutter and Firebase, it logs calorie intake, analyzes nutrition, and keeps you honest—one snack at a time',
           skills: ['Flutter', 'Firebase', 'OpenAi'],
-          logo: require('./assets/project4.png'),
+          logo: require('./assets/calorie.png'),
           link: 'https://github.com/AnanyaMMenon/Snackcident/tree/main'
         },
         {
           title: 'Pumpkin Raider',
           description: 'Pumpkin Raider is a tiny cozy arcade project packed with three retro mini-games. It\'s all about comfy vibes, crunchy leaves, and silly high scores. Perfect for late-night snack breaks and aesthetic pumpkins.',
           skills: ['React', 'TypeScript', 'IndexedDB'],
-          logo: require('./assets/pumpkin.gif'),
+          logo: require('./assets/pumpkiNRAIDER.png'),
           link: 'https://github.com/AnanyaMMenon/Pumpkin-Raider'
         }
       ].map((project, idx) => (
@@ -671,12 +691,14 @@ const Portfolio = () => {
             className="flex items-start justify-center w-full h-[150px] mb-4"
             style={{ minHeight: 150, background: "#fff", borderRadius: "0.75rem 0.75rem 0 0", overflow: "hidden" }}
           >
-            <img
-              src={project.logo}
-              alt={`${project.title} screenshot`}
-              className="object-contain w-[220px] h-[120px] mt-4"
-              style={{ display: "block" }}
-            />
+            {/* replaced <img> with a fixed-size box + constrained img for consistent sizes */}
+            <div className="project-image-box">
+              <img
+                src={project.logo}
+                alt={`${project.title} screenshot`}
+                className="project-image"
+              />
+            </div>
           </div>
           <h3 className="text-lg sm:text-xl font-bold text-white mb-2 text-center">{project.title}</h3>
           <p className="text-light mb-4 text-justify text-sm sm:text-base">
