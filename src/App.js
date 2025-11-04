@@ -636,7 +636,7 @@ const certifications = [
 
       {/* Skills Section */}
       <section id="skills" className={`section ${visibleSections.has('skills') ? 'section-visible' : 'section-hidden'} px-0 sm:px-2`}>
-    <h2 className="section-title text-3xl sm:text-4xl font-bold text-white mb-8 sm:mb-12 text-center">Technical Skills</h2>
+<h2 className="section-title">Technical Skills</h2>
     <div className="glass-card mb-8">
       <h3 className="text-lg sm:text-xl font-bold text-white mb-4">🧠 Programming Languages</h3>
       <div className="flex flex-wrap gap-2 sm:gap-3">
@@ -701,7 +701,7 @@ const certifications = [
   id="publications"
   className={`section ${visibleSections.has('publications') ? 'section-visible' : 'section-hidden'} px-0 sm:px-2`}
 >
-  <h2 className="section-title text-3xl sm:text-4xl font-bold text-white mb-6 sm:mb-8 text-center">
+  <h2 className="section-title">
     {pubView === 'publications' ? 'Publications' : 'Certifications'}
   </h2>
 
@@ -802,9 +802,10 @@ const certifications = [
 </section>
 
 
+
       {/* Projects Section */}
       <section id="projects" className={`section ${visibleSections.has('projects') ? 'section-visible' : 'section-hidden'} px-0 sm:px-2`}>
-  <h2 className="section-title text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-8 sm:mb-12 text-center">Projects</h2>
+<h2 className="section-title">Projects</h2>
   <div className="max-w-6xl mx-auto w-full">
     <div
       className="flex overflow-x-auto gap-8 pb-4"
