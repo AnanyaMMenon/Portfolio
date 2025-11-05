@@ -4,6 +4,7 @@ import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Download, Menu, X,
 import { motion } from 'framer-motion';
 import AOS from 'aos';
 import { Briefcase } from "lucide-react";
+import AMLogo from './assets/AM.jpg'; // adjust the path if needed
 
 import 'aos/dist/aos.css';
 import './Portfolio.css'; // Import your CSS file
@@ -418,10 +419,17 @@ const loadingMessage = [
           pointerEvents: 'auto'
         }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-          <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-            Ananya Menon
-          </div>
+
+<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+  <div className="flex items-center">
+    <img
+      src={AMLogo}
+      alt="Ananya Menon Logo"
+      className="h-10 w-10 rounded-full object-cover" // adjust height/width as needed
+    />
+  </div>
+
+
           <div className="hidden md:flex gap-8">
             {['home', 'about', 'experience', 'skills', 'projects', 'publications', 'education', 'contact'].map((section) => (
               <button
