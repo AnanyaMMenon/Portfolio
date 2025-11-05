@@ -4,10 +4,10 @@ import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Download, Menu, X,
 import { motion } from 'framer-motion';
 import AOS from 'aos';
 import { Briefcase } from "lucide-react";
-import AMLogo from './assets/AM.jpg'; // adjust the path if needed
+import AMLogo from './assets/AM.jpg';
 
 import 'aos/dist/aos.css';
-import './Portfolio.css'; // Import your CSS file
+import './Portfolio.css';
 
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,63 +23,60 @@ const Portfolio = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const formRef = useRef();
   const menuRef = useRef(null);
-  // toggle for Publications vs Certifications
   const [pubView, setPubView] = useState('publications');
-
   const [activeExpSection, setActiveExpSection] = useState(null);
   const [activeExperience, setActiveExperience] = useState('');
 
-// Certifications (from LinkedIn)
-const certifications = [
-  {
-    name: "AWS Cloud Technical Essentials",
-    issuer: "AWS",
-    date: "Oct 2025",
-    skills: ["AWS Basics", "Cloud Concepts", "Core Services"],
-    link: "https://www.coursera.org/account/accomplishments/verify/W0GJOUUROX4V",
-    logo: "https://logos-world.net/wp-content/uploads/2021/08/Amazon-Web-Services-AWS-Logo.png"
-  },
-  {
-    name: "Architecting Solutions on AWS",
-    issuer: "Amazon Web Services",
-    date: "Oct 2025",
-    skills: ["Architecture", "VPC", "High Availability", "Security"],
-    link: "https://www.coursera.org/account/accomplishments/certificate/G3JJ9YK4Q605",
-    logo: "https://logos-world.net/wp-content/uploads/2021/08/Amazon-Web-Services-AWS-Logo.png"
-  },
-  {
-    name: "Building Data Lakes on AWS",
-    issuer: "Amazon Web Services",
-    date: "Oct 2025",
-    skills: ["S3", "Glue", "Athena", "Lake Formation"],
-    link: "https://www.coursera.org/account/accomplishments/verify/JOXRQNEB5VLY",
-    logo: "https://logos-world.net/wp-content/uploads/2021/08/Amazon-Web-Services-AWS-Logo.png"
-  },
-  {
-    name: "Microsoft Certified: DevOps Engineer Expert",
-    issuer: "Microsoft",
-    date: "Dec 2021",
-    skills: ["Azure DevOps", "CI/CD", "IaC", "Monitoring"],
-    link: "https://www.credly.com/badges/298a0033-cda4-4309-98a0-0760788b54e9/linked_in_profile",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
-  },
-  {
-    name: "Microsoft Certified: Azure Developer Associate",
-    issuer: "Microsoft",
-    date: "Oct 2021",
-    skills: ["AZ-204", "App Service", "Functions", "Key Vault"],
-    link: "https://www.credly.com/badges/b9862198-b3d0-4bf3-9a19-2733a0faea74/linked_in_profile",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
-  },
-  {
-    name: "Microsoft Certified: Azure Fundamentals",
-    issuer: "Microsoft",
-    date: "Sep 2021",
-    skills: ["Cloud Concepts", "Core Azure Services", "Security"],
-    link: "https://www.credly.com/badges/391a1566-1e15-4389-ab2c-04cc2bebb16c/linked_in_profile",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
-  }
-];
+  const certifications = [
+    {
+      name: "AWS Cloud Technical Essentials",
+      issuer: "AWS",
+      date: "Oct 2025",
+      skills: ["AWS Basics", "Cloud Concepts", "Core Services"],
+      link: "https://www.coursera.org/account/accomplishments/verify/W0GJOUUROX4V",
+      logo: "https://logos-world.net/wp-content/uploads/2021/08/Amazon-Web-Services-AWS-Logo.png"
+    },
+    {
+      name: "Architecting Solutions on AWS",
+      issuer: "Amazon Web Services",
+      date: "Oct 2025",
+      skills: ["Architecture", "VPC", "High Availability", "Security"],
+      link: "https://www.coursera.org/account/accomplishments/certificate/G3JJ9YK4Q605",
+      logo: "https://logos-world.net/wp-content/uploads/2021/08/Amazon-Web-Services-AWS-Logo.png"
+    },
+    {
+      name: "Building Data Lakes on AWS",
+      issuer: "Amazon Web Services",
+      date: "Oct 2025",
+      skills: ["S3", "Glue", "Athena", "Lake Formation"],
+      link: "https://www.coursera.org/account/accomplishments/verify/JOXRQNEB5VLY",
+      logo: "https://logos-world.net/wp-content/uploads/2021/08/Amazon-Web-Services-AWS-Logo.png"
+    },
+    {
+      name: "Microsoft Certified: DevOps Engineer Expert",
+      issuer: "Microsoft",
+      date: "Dec 2021",
+      skills: ["Azure DevOps", "CI/CD", "IaC", "Monitoring"],
+      link: "https://www.credly.com/badges/298a0033-cda4-4309-98a0-0760788b54e9/linked_in_profile",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
+    },
+    {
+      name: "Microsoft Certified: Azure Developer Associate",
+      issuer: "Microsoft",
+      date: "Oct 2021",
+      skills: ["AZ-204", "App Service", "Functions", "Key Vault"],
+      link: "https://www.credly.com/badges/b9862198-b3d0-4bf3-9a19-2733a0faea74/linked_in_profile",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
+    },
+    {
+      name: "Microsoft Certified: Azure Fundamentals",
+      issuer: "Microsoft",
+      date: "Sep 2021",
+      skills: ["Cloud Concepts", "Core Azure Services", "Security"],
+      link: "https://www.credly.com/badges/391a1566-1e15-4389-ab2c-04cc2bebb16c/linked_in_profile",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
+    }
+  ];
 
   const titles = [
     'Software Engineer',
@@ -88,36 +85,28 @@ const certifications = [
     'Mobile App Developer'
   ];
 
-  // Set zoom to 100% on page load
   useEffect(() => {
     document.body.style.zoom = '100%';
-    // For Firefox
     document.body.style.transform = 'scale(1)';
     document.body.style.transformOrigin = 'top left';
   }, []);
 
-  // Initialize AOS (Animate On Scroll) library
   useEffect(() => {
     if (!loading) {
-      // Reinitialize AOS after loading completes
       AOS.refresh();
     } else {
       AOS.init({ duration: 800, once: true, offset: 80 });
     }
   }, [loading]);
 
-  // Make sections visible when loading completes
   useEffect(() => {
     if (!loading) {
-      // Set all sections to visible initially when loading completes
       const allSections = ['home', 'about', 'experience', 'skills', 'projects', 'publications', 'education', 'contact'];
       setVisibleSections(new Set(allSections));
     }
   }, [loading]);
 
-  // Intersection Observer for section animations
   useEffect(() => {
-    // Don't set up observer until loading is complete
     if (loading) return;
 
     const observerOptions = {
@@ -134,14 +123,12 @@ const certifications = [
       });
     }, observerOptions);
 
-    // Small delay to ensure DOM is ready
     setTimeout(() => {
       const sections = ['home', 'about', 'experience', 'skills', 'projects', 'publications', 'education', 'contact'];
       sections.forEach(sectionId => {
         const element = document.getElementById(sectionId);
         if (element) {
           observer.observe(element);
-          // Also mark as visible immediately if already in viewport
           const rect = element.getBoundingClientRect();
           if (rect.top < window.innerHeight && rect.bottom > 0) {
             setVisibleSections(prev => new Set([...prev, sectionId]));
@@ -153,13 +140,13 @@ const certifications = [
     return () => observer.disconnect();
   }, [loading]);
 
-  // Loading screen typewriter effect
   useEffect(() => {
-const loadingMessage = [
-  "Hi, I am Ananya.",
-  "I build scalable web applications.",
-  "Check out my Portfolio <3"
-].join("\n");    let i = 0;
+    const loadingMessage = [
+      "Hi, I am Ananya.",
+      "I build scalable web applications.",
+      "Check out my Portfolio <3"
+    ].join("\n");
+    let i = 0;
     if (loading) {
       const typing = setInterval(() => {
         if (i < loadingMessage.length) {
@@ -167,17 +154,15 @@ const loadingMessage = [
           i++;
         } else {
           clearInterval(typing);
-          // Wait a bit after typing completes before showing portfolio
           setTimeout(() => setLoading(false), 500);
         }
-      }, 50); // Typing speed - adjust as needed
+      }, 50);
       return () => clearInterval(typing);
     }
   }, [loading]);
 
-  // Typewriter effect for rotating titles
   useEffect(() => {
-    if (loading) return; // Don't start until loading is done
+    if (loading) return;
 
     const currentTitle = titles[titleIndex];
     const typingSpeed = isDeleting ? 50 : 50;
@@ -185,19 +170,15 @@ const loadingMessage = [
 
     const timer = setTimeout(() => {
       if (!isDeleting) {
-        // Typing forward
         if (typedTitle.length < currentTitle.length) {
           setTypedTitle(currentTitle.slice(0, typedTitle.length + 1));
         } else {
-          // Finished typing, pause then start deleting
           setTimeout(() => setIsDeleting(true), pauseTime);
         }
       } else {
-        // Deleting backward
         if (typedTitle.length > 0) {
           setTypedTitle(currentTitle.slice(0, typedTitle.length - 1));
         } else {
-          // Finished deleting, move to next title
           setIsDeleting(false);
           setTitleIndex((prev) => (prev + 1) % titles.length);
         }
@@ -207,11 +188,10 @@ const loadingMessage = [
     return () => clearTimeout(timer);
   }, [typedTitle, isDeleting, titleIndex, titles, loading]);
 
-  // Scroll spy: highlight nav link as section is in view
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'about', 'experience', 'skills', 'projects', 'publications', 'education', 'contact'];
-      const scrollPosition = window.scrollY + 120; // Offset for navbar height
+      const scrollPosition = window.scrollY + 120;
 
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -230,38 +210,33 @@ const loadingMessage = [
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Smooth scroll to section
   const scrollToSection = (sectionId) => {
-    console.log('Scrolling to section:', sectionId); // Debug log
     const element = document.getElementById(sectionId);
-    console.log('Element found:', element); // Debug log
     if (element) {
-      const offsetTop = element.offsetTop - 80; // Account for fixed navbar
+      const offsetTop = element.offsetTop - 80;
       window.scrollTo({
         top: offsetTop,
         behavior: 'smooth'
       });
-    } else {
-      console.error('Section not found:', sectionId);
     }
     setIsMenuOpen(false);
   };
 
   const sendEmail = (e) => {
     e.preventDefault();
-    setEmailStatus(''); // Reset status
+    setEmailStatus('');
 
     emailjs.sendForm(
-      'service_t7am8qo',    // Replace with your EmailJS service ID
-      'template_p6nhyft',   // Replace with your EmailJS template ID
+      'service_t7am8qo',
+      'template_p6nhyft',
       formRef.current,
-      'tZ1u72LpykRW7FiZT'     // Replace with your EmailJS public key
+      'tZ1u72LpykRW7FiZT'
     )
     .then(
       (result) => {
         setEmailStatus('Message sent successfully!');
         formRef.current.reset();
-        setMessage(""); // Clear the message textarea
+        setMessage("");
       },
       (error) => {
         setEmailStatus('Failed to send message. Please try again.');
@@ -271,49 +246,46 @@ const loadingMessage = [
 
   const skills = {
     languages: [
-      'C#',
-      'C/C++',
-      'Java',
-      'Python',
-      'JavaScript',
-      'TypeScript',
-      'SQL',
-      'Dart',
-      'HTML & CSS'
+      { name: 'C#', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg' },
+      { name: 'C/C++', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg' },
+      { name: 'Java', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
+      { name: 'Python', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+      { name: 'JavaScript', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+      { name: 'TypeScript', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' },
+      { name: 'SQL', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
+      { name: 'Dart', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg' },
+      { name: 'HTML & CSS', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
+      { name: 'Tailwind CSS', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg' }
     ],
     frameworks: [
-      'ASP.NET MVC',
-      'ASP.NET Web API',
-      'Entity Framework Core',
-      'Flask',
-      'Angular',
-      'React',
-      'Flutter',
-      'jQuery',
-      'Bootstrap',
-      'Node.js',
-      'Express.js',
-      'Tailwind CSS',
+      { name: 'ASP.NET', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg' },
+      { name: 'Entity Framework', logo: 'data:image/png;base64,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' },
+      { name: 'Flask', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg' },
+      { name: 'Angular', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg' },
+      { name: 'React', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+      { name: 'Flutter', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg' },
+      { name: 'jQuery', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg' },
+      { name: 'Bootstrap', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg' },
+      { name: 'Node.js', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
+      { name: 'Express.js', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg' },
     ],
     tools: [
-      'Microsoft Azure',
-      'Git & GitHub',
-      'GitLab CI/CD',
-      'Docker',
-      'Postman',
-      'Visual Studio & VS Code',
-      'ServiceNow',
-      'Azure DevOps Pipelines',
-      'SSMS',
-    ]
-  };
+      { name: 'Microsoft Azure', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg' },
+      { name: 'Git & GitHub', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
+      { name: 'GitLab CI/CD', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg' },
+      { name: 'Docker', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
+      { name: 'Postman', logo: 'https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg' },
+      { name: 'Visual Studio', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg' },
+      { name: 'VS Code', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg' },
+      { name: 'Kubernetes', logo: 'data:image/png;base64,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' },
+      { name: 'SSMS', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg' },
+      { name: 'AWS', logo: "https://logos-world.net/wp-content/uploads/2021/08/Amazon-Web-Services-AWS-Logo.png" },
+  ]};
 
-  // Experience data (responsive logo paths, mobile-friendly)
   const experiences = [
     {
       title: 'Software Engineer Intern',
       company: 'CDK Global',
-      // Use relative path for logo, ensure image is in public folder for React
       logo: require('./assets/cdk.png'),
       location: 'Chicago, IL',
       period: 'June 2024 – May 2025',
@@ -371,7 +343,6 @@ const loadingMessage = [
     }
   ];
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     if (!isMenuOpen) return;
     const handleClickOutside = (event) => {
@@ -383,7 +354,6 @@ const loadingMessage = [
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isMenuOpen]);
 
-  // Loading Screen
   if (loading) {
     return (
       <div className="loading-screen">
@@ -408,7 +378,6 @@ const loadingMessage = [
 
   return (
     <div className="portfolio-container min-h-screen bg-gradient-to-br from-purple-900 to-purple-700 px-2 sm:px-4">
-      {/* Sticky Top Navigation Bar */}
       <nav
         className="fixed top-0 left-0 w-full border-b border-purple-700 shadow-lg"
         style={{
@@ -419,25 +388,20 @@ const loadingMessage = [
           pointerEvents: 'auto'
         }}
       >
-
-<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-  <div className="flex items-center">
-    <img
-      src={AMLogo}
-      alt="Ananya Menon Logo"
-      className="h-10 w-10 rounded-full object-cover" // adjust height/width as needed
-    />
-  </div>
-
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+          <div className="flex items-center">
+            <img
+              src={AMLogo}
+              alt="Ananya Menon Logo"
+              className="h-10 w-10 rounded-full object-cover"
+            />
+          </div>
 
           <div className="hidden md:flex gap-8">
             {['home', 'about', 'experience', 'skills', 'projects', 'publications', 'education', 'contact'].map((section) => (
               <button
                 key={section}
-                onClick={(e) => {
-                  console.log('CLICKED:', section);
-                  scrollToSection(section);
-                }}
+                onClick={() => scrollToSection(section)}
                 className={`uppercase tracking-wide px-3 py-1 rounded transition-colors duration-200 font-medium ${
                   activeSection === section
                     ? 'bg-purple-700 text-white shadow-md'
@@ -455,20 +419,15 @@ const loadingMessage = [
               </button>
             ))}
           </div>
-          {/* Mobile menu button */}
           <div className="md:hidden relative">
             <button
-              onClick={() => {
-                console.log('Menu toggle clicked');
-                setIsMenuOpen(!isMenuOpen);
-              }}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-white p-2 focus:outline-none"
               aria-label="Open navigation menu"
               style={{ zIndex: 100000, pointerEvents: 'auto' }}
             >
               {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
-            {/* Dropdown menu */}
             {isMenuOpen && (
               <div
                 ref={menuRef}
@@ -484,7 +443,6 @@ const loadingMessage = [
                     <button
                       key={item}
                       onClick={() => {
-                        console.log('Mobile menu clicked:', item);
                         scrollToSection(item.toLowerCase());
                         setIsMenuOpen(false);
                       }}
@@ -503,7 +461,7 @@ const loadingMessage = [
         </div>
       </nav>
 
-      {/* Hero Section */}
+      {/* Hero Section - keeping original code */}
       <section id="home" className="hero-section" style={{ minHeight: '90vh', paddingTop: '8rem', paddingBottom: '6rem' }}>
         <div className="hero-content" style={{ maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
           <motion.div 
@@ -620,7 +578,7 @@ const loadingMessage = [
         </div>
       </section>
 
-      {/* About Section */}
+      {/* About Section - keeping original */}
       <motion.section
         id="about"
         className={`section ${visibleSections.has('about') ? 'section-visible' : 'section-hidden'}`}
@@ -730,7 +688,6 @@ const loadingMessage = [
                   }
                   className="experience-header"
                 >
-                  {/* Left: Company Logo + Role */}
                   <div className="title">
                     <div className="company-logo-container">
                       {exp.logo ? (
@@ -754,14 +711,12 @@ const loadingMessage = [
                     </div>
                   </div>
 
-                  {/* Right: Period + Location */}
                   <div className="flex flex-col items-end">
                     <p className="period">{exp.period}</p>
                     <p className="location">{exp.location}</p>
                   </div>
                 </button>
 
-                {/* Expandable Card */}
                 {activeExperience === exp.company && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
@@ -791,7 +746,7 @@ const loadingMessage = [
         </div>
       </section>
 
-      {/* Skills Section */}
+      {/* Skills Section - NEW WITH LOGOS */}
       <section id="skills" className={`section ${visibleSections.has('skills') ? 'section-visible' : 'section-hidden'} px-0 sm:px-2`}>
         <motion.h2 
           className="section-title"
@@ -802,72 +757,102 @@ const loadingMessage = [
         >
           Technical Skills
         </motion.h2>
-        <div className="glass-card mb-8">
-          <h3 className="text-lg sm:text-xl font-bold text-white mb-4">🧠 Programming Languages</h3>
-          <div className="flex flex-wrap gap-2 sm:gap-3">
+
+        {/* Programming Languages */}
+        <div className="mb-12">
+          <h3 className="text-2xl font-bold text-white mb-6 text-center">🧠 Programming Languages</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {skills.languages.map((skill, index) => (
-              <motion.span
+              <motion.div
                 key={index}
-                className="bg-purple-800/80 text-purple-100 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-sm sm:text-base font-semibold shadow-md whitespace-nowrap skill-badge"
-                style={{
-                  letterSpacing: '0.01em',
-                  display: 'inline-block',
-                  minWidth: '80px',
-                  textAlign: 'center',
-                }}
+                className="skill-card"
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
-                whileHover={{ scale: 1.1, y: -3 }}
+                whileHover={{ scale: 1.05, y: -5 }}
               >
-                {skill}
-              </motion.span>
+                <div className="skill-logo-container">
+                  <img 
+                    src={skill.logo} 
+                    alt={skill.name}
+                    className="skill-logo"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      const fallback = document.createElement('div');
+                      fallback.className = 'skill-logo-fallback';
+                      fallback.textContent = skill.name.charAt(0);
+                      e.currentTarget.parentElement.appendChild(fallback);
+                    }}
+                  />
+                </div>
+                <p className="skill-name">{skill.name}</p>
+              </motion.div>
             ))}
           </div>
         </div>
-        <div className="glass-card mb-8">
-          <h3 className="text-lg sm:text-xl font-bold text-white mb-4">🧰 Frameworks & Libraries</h3>
-          <div className="flex flex-wrap gap-2 sm:gap-3">
+
+        {/* Frameworks & Libraries */}
+        <div className="mb-12">
+          <h3 className="text-2xl font-bold text-white mb-6 text-center">🧰 Frameworks & Libraries</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {skills.frameworks.map((framework, index) => (
-              <motion.span
+              <motion.div
                 key={index}
-                className="bg-purple-800/80 text-purple-100 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-sm sm:text-base font-semibold shadow-md whitespace-nowrap skill-badge"
-                style={{
-                  letterSpacing: '0.01em',
-                  display: 'inline-block',
-                  minWidth: '80px',
-                  textAlign: 'center',
-                }}
+                className="skill-card"
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
-                whileHover={{ scale: 1.1, y: -3 }}
+                whileHover={{ scale: 1.05, y: -5 }}
               >
-                {framework}
-              </motion.span>
+                <div className="skill-logo-container">
+                  <img 
+                    src={framework.logo} 
+                    alt={framework.name}
+                    className="skill-logo"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      const fallback = document.createElement('div');
+                      fallback.className = 'skill-logo-fallback';
+                      fallback.textContent = framework.name.charAt(0);
+                      e.currentTarget.parentElement.appendChild(fallback);
+                    }}
+                  />
+                </div>
+                <p className="skill-name">{framework.name}</p>
+              </motion.div>
             ))}
           </div>
         </div>
-        <div className="glass-card mb-8">
-          <h3 className="text-lg sm:text-xl font-bold text-white mb-4">🔧 Developer Tools & Platforms</h3>
-          <div className="flex flex-wrap gap-2 sm:gap-3">
+
+        {/* Developer Tools */}
+        <div className="mb-12">
+          <h3 className="text-2xl font-bold text-white mb-6 text-center">🔧 Developer Tools & Platforms</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {skills.tools.map((tool, index) => (
-              <motion.span
+              <motion.div
                 key={index}
-                className="bg-purple-800/80 text-purple-100 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-sm sm:text-base font-semibold shadow-md whitespace-nowrap skill-badge"
-                style={{
-                  letterSpacing: '0.01em',
-                  display: 'inline-block',
-                  minWidth: '80px',
-                  textAlign: 'center',
-                }}
+                className="skill-card"
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
-                whileHover={{ scale: 1.1, y: -3 }}
+                whileHover={{ scale: 1.05, y: -5 }}
               >
-                {tool}
-              </motion.span>
+                <div className="skill-logo-container">
+                  <img 
+                    src={tool.logo} 
+                    alt={tool.name}
+                    className="skill-logo"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      const fallback = document.createElement('div');
+                      fallback.className = 'skill-logo-fallback';
+                      fallback.textContent = tool.name.charAt(0);
+                      e.currentTarget.parentElement.appendChild(fallback);
+                    }}
+                  />
+                </div>
+                <p className="skill-name">{tool.name}</p>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -888,37 +873,34 @@ const loadingMessage = [
           {pubView === 'publications' ? 'Publications' : 'Certifications'}
         </motion.h2>
 
-        {/* Toggle */}
-<div className="max-w-6xl mx-auto w-full mb-8 flex items-center justify-center gap-3" role="tablist" aria-label="Publications and Certifications">
-  <button
-    className={`${pubView === 'publications' ? 'btn-primary' : 'btn-secondary opacity-60'}`}
-    onClick={() => setPubView('publications')}
-    type="button"
-    role="tab"
-    aria-selected={pubView === 'publications'}
-    aria-controls="pubs-panel"
-    style={{ padding: '0.5rem 1rem', borderRadius: '999px' }}
-  >
-    Publications
-  </button>
+        <div className="max-w-6xl mx-auto w-full mb-8 flex items-center justify-center gap-3" role="tablist" aria-label="Publications and Certifications">
+          <button
+            className={`${pubView === 'publications' ? 'btn-primary' : 'btn-secondary opacity-60'}`}
+            onClick={() => setPubView('publications')}
+            type="button"
+            role="tab"
+            aria-selected={pubView === 'publications'}
+            aria-controls="pubs-panel"
+            style={{ padding: '0.5rem 1rem', borderRadius: '999px' }}
+          >
+            Publications
+          </button>
 
-  <button
-    className={`${pubView === 'certifications' ? 'btn-primary' : 'btn-secondary opacity-60'}`}
-    onClick={() => setPubView('certifications')}
-    type="button"
-    role="tab"
-    aria-selected={pubView === 'certifications'}
-    aria-controls="certs-panel"
-    style={{ padding: '0.5rem 1rem', borderRadius: '999px' }}
-  >
-    Certifications
-  </button>
-</div>
-
+          <button
+            className={`${pubView === 'certifications' ? 'btn-primary' : 'btn-secondary opacity-60'}`}
+            onClick={() => setPubView('certifications')}
+            type="button"
+            role="tab"
+            aria-selected={pubView === 'certifications'}
+            aria-controls="certs-panel"
+            style={{ padding: '0.5rem 1rem', borderRadius: '999px' }}
+          >
+            Certifications
+          </button>
+        </div>
 
         <div className="max-w-6xl mx-auto w-full">
           {pubView === 'publications' ? (
-            // ===== Publications View =====
             <div className="space-y-8">
               <div className="glass-card w-full">
                 <h3 className="text-2xl font-bold text-white mb-2">
@@ -952,7 +934,6 @@ const loadingMessage = [
               </div>
             </div>
           ) : (
-            // ===== Certifications View =====
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {certifications.map((c, i) => (
                 <motion.div 
@@ -963,7 +944,6 @@ const loadingMessage = [
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   whileHover={{ scale: 1.03, y: -5 }}
                 >
-                  {/* Logo at the top */}
                   {c.logo && (
                     <div className="mb-4 flex justify-center items-center">
                       <img 
@@ -978,7 +958,6 @@ const loadingMessage = [
                           minHeight: '40px'
                         }}
                         onError={(e) => {
-                          console.error('Logo failed to load:', c.logo);
                           e.target.style.display = 'none';
                           const fallback = document.createElement('div');
                           fallback.className = 'certification-logo-fallback';
@@ -1022,7 +1001,7 @@ const loadingMessage = [
         </div>
       </section>
 
-      {/* Projects Section */}
+      {/* Projects Section - keeping original */}
       <section id="projects" className={`section ${visibleSections.has('projects') ? 'section-visible' : 'section-hidden'} px-0 sm:px-2`}>
         <motion.h2 
           className="section-title"
