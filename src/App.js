@@ -154,8 +154,12 @@ const certifications = [
 
   // Loading screen typewriter effect
   useEffect(() => {
-    const loadingMessage = "Hi, I am Ananya.<br> I build reliable systems. Check out my Portfolio <3";
-    let i = 0;
+const loadingMessage = [
+  "Hi, I am Ananya Menon.",
+  "I build reliable systems.",
+  "Check out my Portfolio <3"
+].join("\n");  
+  let i = 0;
     if (loading) {
       const typing = setInterval(() => {
         if (i < loadingMessage.length) {
@@ -878,26 +882,32 @@ const certifications = [
         </motion.h2>
 
         {/* Toggle */}
-        <div className="max-w-6xl mx-auto w-full mb-8 flex items-center justify-center gap-3">
-          <button
-            className={`btn-primary ${pubView === 'publications' ? '' : 'opacity-60'}`}
-            onClick={() => setPubView('publications')}
-            type="button"
-            aria-pressed={pubView === 'publications'}
-            style={{ padding: '0.5rem 1rem', borderRadius: '999px' }}
-          >
-            Publications
-          </button>
-          <button
-            className={`btn-secondary ${pubView === 'certifications' ? '' : 'opacity-60'}`}
-            onClick={() => setPubView('certifications')}
-            type="button"
-            aria-pressed={pubView === 'certifications'}
-            style={{ padding: '0.5rem 1rem', borderRadius: '999px' }}
-          >
-            Certifications
-          </button>
-        </div>
+<div className="max-w-6xl mx-auto w-full mb-8 flex items-center justify-center gap-3" role="tablist" aria-label="Publications and Certifications">
+  <button
+    className={`${pubView === 'publications' ? 'btn-primary' : 'btn-secondary opacity-60'}`}
+    onClick={() => setPubView('publications')}
+    type="button"
+    role="tab"
+    aria-selected={pubView === 'publications'}
+    aria-controls="pubs-panel"
+    style={{ padding: '0.5rem 1rem', borderRadius: '999px' }}
+  >
+    Publications
+  </button>
+
+  <button
+    className={`${pubView === 'certifications' ? 'btn-primary' : 'btn-secondary opacity-60'}`}
+    onClick={() => setPubView('certifications')}
+    type="button"
+    role="tab"
+    aria-selected={pubView === 'certifications'}
+    aria-controls="certs-panel"
+    style={{ padding: '0.5rem 1rem', borderRadius: '999px' }}
+  >
+    Certifications
+  </button>
+</div>
+
 
         <div className="max-w-6xl mx-auto w-full">
           {pubView === 'publications' ? (
