@@ -155,11 +155,10 @@ const certifications = [
   // Loading screen typewriter effect
   useEffect(() => {
 const loadingMessage = [
-  "Hi, I am Ananya Menon.",
-  "I build reliable systems.",
+  "Hi, I am Ananya.",
+  "I build scalable web applications.",
   "Check out my Portfolio <3"
-].join("\n");  
-  let i = 0;
+].join("\n");    let i = 0;
     if (loading) {
       const typing = setInterval(() => {
         if (i < loadingMessage.length) {
@@ -168,7 +167,7 @@ const loadingMessage = [
         } else {
           clearInterval(typing);
           // Wait a bit after typing completes before showing portfolio
-          setTimeout(() => setLoading(false), 1000);
+          setTimeout(() => setLoading(false), 500);
         }
       }, 50); // Typing speed - adjust as needed
       return () => clearInterval(typing);
@@ -390,7 +389,7 @@ const loadingMessage = [
         <div className="loading-content">
           <div className="loading-gif-container">
             <img 
-              src={require('./assets/ab4xqv.gif')} 
+              src={require('./assets/ab5rsx.gif')} 
               alt="Loading animation" 
               className="loading-gif"
             />

@@ -1467,6 +1467,54 @@ footer{
   font-weight: 500;
   font-size: 0.9rem;
 }
+/* Ensure multi-line typewriter uses line breaks */
+.loading-text p.typewriter-text {
+  white-space: pre-line;
+}
+
+/* Spotlight phase: fade out everything except the name */
+.loading-screen.loading-focus .loading-gif-container,
+.loading-screen.loading-focus .loading-text .other-line {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 350ms ease, transform 350ms ease;
+}
+
+/* Keep the name visible and scale it a touch */
+.loading-screen.loading-focus .loading-name {
+  display: inline-block;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 6.5vw, 4rem);
+  letter-spacing: 0.02em;
+  background: linear-gradient(135deg, #1e90ff 0%, #00bfff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: scale(1.06);
+  transition: transform 450ms ease, opacity 450ms ease;
+}
+
+/* Smooth stage fade for the whole content group */
+.loading-content.fade-stage {
+  transition: opacity 400ms ease;
+}
+
+/* Cursor hides during the spotlight phase */
+.loading-screen.loading-focus .typewriter-cursor {
+  opacity: 0;
+}
+
+/* Optional: subtle crossfade as overlay exits (the app behind is visible) */
+.loading-screen.loading-focus {
+  transition: background 400ms ease, opacity 600ms ease;
+  background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(10,14,26,0.9) 100%);
+}
+
+/* Make the hero appear immediately aligned with center so the "morph" feels natural */
+@media (min-width: 769px) {
+  .hero-section .hero-name {
+    transition: opacity 500ms ease, transform 500ms ease;
+  }
+}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
