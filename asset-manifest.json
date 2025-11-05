@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Portfolio/static/css/main.2dc3ba6f.css",
-    "main.js": "/Portfolio/static/js/main.f2f6dc3c.js",
+    "main.css": "/Portfolio/static/css/main.83555220.css",
+    "main.js": "/Portfolio/static/js/main.adcabee9.js",
     "static/js/453.d7448aa8.chunk.js": "/Portfolio/static/js/453.d7448aa8.chunk.js",
     "static/media/image.jpg": "/Portfolio/static/media/image.85c727db99a38b87363a.jpg",
     "static/media/BatleshipGame.png": "/Portfolio/static/media/BatleshipGame.17d2b385d4f495f4986a.png",
@@ -12,12 +12,12 @@
     "static/media/ab5rsx.gif": "/Portfolio/static/media/ab5rsx.0e95780be8f4bc6d1de9.gif",
     "static/media/AM.jpg": "/Portfolio/static/media/AM.039e064a1d56bedc1d51.jpg",
     "index.html": "/Portfolio/index.html",
-    "main.2dc3ba6f.css.map": "/Portfolio/static/css/main.2dc3ba6f.css.map",
-    "main.f2f6dc3c.js.map": "/Portfolio/static/js/main.f2f6dc3c.js.map",
+    "main.83555220.css.map": "/Portfolio/static/css/main.83555220.css.map",
+    "main.adcabee9.js.map": "/Portfolio/static/js/main.adcabee9.js.map",
     "453.d7448aa8.chunk.js.map": "/Portfolio/static/js/453.d7448aa8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2dc3ba6f.css",
-    "static/js/main.f2f6dc3c.js"
+    "static/css/main.83555220.css",
+    "static/js/main.adcabee9.js"
   ]
 }
