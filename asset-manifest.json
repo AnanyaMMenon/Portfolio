@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Portfolio/static/css/main.76cdd6cd.css",
-    "main.js": "/Portfolio/static/js/main.b2d31647.js",
+    "main.css": "/Portfolio/static/css/main.bf2aa8c6.css",
+    "main.js": "/Portfolio/static/js/main.60c39f88.js",
     "static/js/453.d7448aa8.chunk.js": "/Portfolio/static/js/453.d7448aa8.chunk.js",
     "static/media/image.jpg": "/Portfolio/static/media/image.85c727db99a38b87363a.jpg",
     "static/media/BatleshipGame.png": "/Portfolio/static/media/BatleshipGame.17d2b385d4f495f4986a.png",
@@ -9,13 +9,14 @@
     "static/media/F.png": "/Portfolio/static/media/F.86d22bdb342dfb55766b.png",
     "static/media/calorie.png": "/Portfolio/static/media/calorie.9e2bab9c8eb6bb2d3eef.png",
     "static/media/pumpkiNRAIDER.png": "/Portfolio/static/media/pumpkiNRAIDER.8fb3649d4e7121f99484.png",
+    "static/media/ab4xqv.gif": "/Portfolio/static/media/ab4xqv.783b4faff6ddd3b4b4b2.gif",
     "index.html": "/Portfolio/index.html",
-    "main.76cdd6cd.css.map": "/Portfolio/static/css/main.76cdd6cd.css.map",
-    "main.b2d31647.js.map": "/Portfolio/static/js/main.b2d31647.js.map",
+    "main.bf2aa8c6.css.map": "/Portfolio/static/css/main.bf2aa8c6.css.map",
+    "main.60c39f88.js.map": "/Portfolio/static/js/main.60c39f88.js.map",
     "453.d7448aa8.chunk.js.map": "/Portfolio/static/js/453.d7448aa8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.76cdd6cd.css",
-    "static/js/main.b2d31647.js"
+    "static/css/main.bf2aa8c6.css",
+    "static/js/main.60c39f88.js"
   ]
 }
