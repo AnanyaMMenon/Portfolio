@@ -318,7 +318,7 @@ const loadingMessage = [
       location: 'Chicago, IL',
       period: 'June 2024 – May 2025',
       achievements: [
-        "Led refactoring of 15+ legacy NuGet dependencies and developed async C# event-driven features using AsyncAPI specs, MSTest, and dependency injection, restoring 5 critical CRM systems during CDK's cyberattack recovery with 100% test coverage and zero production incidents",
+        "Led refactoring of 15+ legacy NuGet dependencies and developed async C# event-driven features, restoring 5 critical CRM systems during CDK's cyberattack recovery with 100% test coverage and zero production incidents",
         "Created Python automation scripts utilizing pandas and asyncio that reduced data validation and log processing time by 40%, significantly improving debugging efficiency and real-time monitoring of CRM system health",
         "Built a reusable React-based redirect warning dialog with CDK's internal UI/UX library to improve external link safety in the CRM email client, enhancing user security and reducing phishing incidents by 25%"
       ],
